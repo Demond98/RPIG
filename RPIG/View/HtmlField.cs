@@ -37,7 +37,21 @@ namespace RPIG.View
 
 		public void DrawLocation(GameLocation location, State state)
 		{
-			Task.Run(() => Element.InnerHTML = location.HtmlText);
+			Task.Run(() =>
+			{
+				Element.InnerHTML = location.HtmlText;
+
+				foreach (var func in location.TransitionFuncs)
+				{
+					var button = new HTMLButtonElement();
+					button.TextContent = func.Text;
+					//TODO ой ой, все неправильно. Здесь не должно быть App
+					button.OnClick = App.Game.PushButtonHandler;
+					button.Disabled = !func.IsActive(state);
+
+					Element.AppendChild(button);
+				}
+			});
 		}
 	}
 }
