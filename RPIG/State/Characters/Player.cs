@@ -8,6 +8,7 @@ namespace RPIG.States.Characters
 {
 	public class Player
 	{
+		public int Money;
 
 	}
 }

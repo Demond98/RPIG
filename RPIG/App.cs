@@ -17,7 +17,6 @@ namespace RPIG
 		public static Game Game;
 		public static HtmlWindow Window;
 
-
 		public static void Main()
 		{
 			Game = new Game();

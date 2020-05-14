@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Bridge.Html5;
 using RPIG.States;
 
 namespace RPIG.Engine
 {
 	public class Game
 	{
-		public Node CurrentNode;
+		public Stack<(Location location, State state)> StatesStack;
+		public Location CurrentLocation;
 		public State CurrentState;
 
-		public void PushButton(string actionText)
+		public void PushButtonHandler(MouseEvent<HTMLDivElement> e)
+			=> PushButton(e.CurrentTarget.TextContent);
+
+		private void PushButton(string actionText)
 		{
-			CurrentNode = CurrentNode
+			(CurrentLocation, CurrentState) = CurrentLocation
 				.TransitionFuncs
 				.First(a => a.Text == actionText)
 				.Transit(CurrentState);
