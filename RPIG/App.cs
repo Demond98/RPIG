@@ -25,7 +25,7 @@ namespace RPIG
 				CurrentLocation = location
 			};
 			Window = new HtmlWindow();
-			Window.Field.DrawLocation(Game.CurrentLocation);
+			Window.Field.DrawLocation(Game.CurrentLocation, Game.CurrentState);
 			Game.LocationChanged += Window.Field.DrawLocation;
 		}
 	}

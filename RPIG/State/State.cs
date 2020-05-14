@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using RPIG.States;
+
 namespace RPIG.States
 {
 	public class State

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bridge.Html5;
 using RPIG.Engine;
+using RPIG.States;
 
 namespace RPIG.View
 {
@@ -34,9 +35,9 @@ namespace RPIG.View
 			Document.Body.AppendChild(Element);
 		}
 
-		public void DrawLocation(GameLocation location)
+		public void DrawLocation(GameLocation location, State state)
 		{
-			Element.InnerHTML = location.HtmlText;
+			Task.Run(() => Element.InnerHTML = location.HtmlText);
 		}
 	}
 }
