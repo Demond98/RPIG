@@ -19,8 +19,14 @@ namespace RPIG
 
 		public static void Main()
 		{
-			Game = new Game();
+			var location = new GameLocation("<h1>Bibu dal</h1>", new TransitionFunc("lol", null, null, null));
+			Game = new Game()
+			{
+				CurrentLocation = location
+			};
 			Window = new HtmlWindow();
+			Window.Field.DrawLocation(Game.CurrentLocation);
+			Game.LocationChanged += Window.Field.DrawLocation;
 		}
 	}
 }

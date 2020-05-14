@@ -40,9 +40,11 @@
     <Compile Include="State\Characters\Player.cs" />
     <Compile Include="Engine\Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Engine\Location.cs" />
+    <Compile Include="Engine\GameLocation.cs" />
     <Compile Include="State\State.cs" />
     <Compile Include="Engine\TransitionFunc.cs" />
+    <Compile Include="View\HtmlField.cs" />
+    <Compile Include="View\HtmlMenu.cs" />
     <Compile Include="View\HtmlWindow.cs" />
   </ItemGroup>
   <ItemGroup>

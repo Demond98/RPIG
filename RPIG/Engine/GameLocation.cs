@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace RPIG.Engine
 {
-	public class Location
+	public class GameLocation
 	{
 		public readonly string HtmlText;
 		public readonly List<TransitionFunc> TransitionFuncs;
 
-		public Location(string htmlText, params TransitionFunc[] transitionFunc)
+		public GameLocation(string htmlText, params TransitionFunc[] transitionFunc)
 		{
 			HtmlText = htmlText;
 			TransitionFuncs = transitionFunc.ToList();

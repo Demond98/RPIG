@@ -10,9 +10,10 @@ namespace RPIG.Engine
 {
 	public class Game
 	{
-		public Stack<(Location location, State state)> StatesStack;
-		public Location CurrentLocation;
+		public Stack<(GameLocation location, State state)> StatesStack;
+		public GameLocation CurrentLocation;
 		public State CurrentState;
+		public event Action<GameLocation> LocationChanged;
 
 		public void PushButtonHandler(MouseEvent<HTMLDivElement> e)
 			=> PushButton(e.CurrentTarget.TextContent);
@@ -23,6 +24,8 @@ namespace RPIG.Engine
 				.TransitionFuncs
 				.First(a => a.Text == actionText)
 				.Transit(CurrentState);
+
+			LocationChanged?.Invoke(CurrentLocation);
 		}
 	}
 }
