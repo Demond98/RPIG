@@ -12,8 +12,9 @@ namespace RPIG.View
 	public class HtmlField
 	{
 		public readonly HTMLDivElement Element;
+		private readonly Action<MouseEvent<HTMLButtonElement>> PushButtonHandler;
 
-		public HtmlField()
+		public HtmlField(Action<MouseEvent<HTMLButtonElement>> pushButtonHandler)
 		{
 			Element = new HTMLDivElement
 			{
@@ -32,6 +33,8 @@ namespace RPIG.View
 				}
 			};
 
+			PushButtonHandler = pushButtonHandler;
+
 			Document.Body.AppendChild(Element);
 		}
 
@@ -43,11 +46,12 @@ namespace RPIG.View
 
 				foreach (var func in location.TransitionFuncs)
 				{
-					var button = new HTMLButtonElement();
-					button.TextContent = func.Text;
-					//TODO ой ой, все неправильно. Здесь не должно быть App
-					button.OnClick = App.Game.PushButtonHandler;
-					button.Disabled = !func.IsActive(state);
+					var button = new HTMLButtonElement
+					{
+						TextContent = func.Text,
+						OnClick = PushButtonHandler,
+						Disabled = !func.IsActive(state)
+					};
 
 					Element.AppendChild(button);
 				}

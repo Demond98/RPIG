@@ -9,9 +9,9 @@ namespace RPIG.Engine
 	public class GameLocation
 	{
 		public readonly string HtmlText;
-		public readonly List<TransitionFunc> TransitionFuncs;
+		public readonly List<ButtonFunc> TransitionFuncs;
 
-		public GameLocation(string htmlText, params TransitionFunc[] transitionFunc)
+		public GameLocation(string htmlText, params ButtonFunc[] transitionFunc)
 		{
 			HtmlText = htmlText;
 			TransitionFuncs = transitionFunc.ToList();
