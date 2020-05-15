@@ -18,13 +18,12 @@ namespace LocationLoader
 			foreach (var directory in Directory.GetDirectories("Assets/"))
 			{
 				var files = new DirectoryInfo(directory).GetFiles();
-				string getContentbyExtension(string extension) => GetContentByExtension(files, extension);
 
 				var gameLocation = new GameLocation
 				(
-					getContentbyExtension(".css"),
-					getContentbyExtension(".html"),
-					getContentbyExtension(".txt").Split(Environment.NewLine).ToList()
+					GetContentByExtension(files, ".css"),
+					GetContentByExtension(files, ".html"),
+					GetContentByExtension(files, ".txt").Split(Environment.NewLine).ToList()
 				);
 
 				var jsonText = JsonConvert.SerializeObject(gameLocation);
