@@ -8,7 +8,8 @@ namespace LocationLoader
 	{
 		public string HtmlText { get; set; }
 		public string CssText { get; set; }
-		public List<string> TransitionFunctions { get; }
+		public List<string> TransitionFunctions { get; private set; }
+
 		public GameLocation(string htmlText, string cssText, List<string> transitionFunctions)
 		{
 			HtmlText = htmlText;

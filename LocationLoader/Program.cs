@@ -20,14 +20,21 @@ namespace LocationLoader
 			foreach (var directory in Directory.GetDirectories("Assets/"))
 			{
 				var files = new DirectoryInfo(directory).GetFiles();
-				string getContentbyExtension(string extension) => GetContentByExtension(files, extension);
 
 				yield return new GameLocation
 				(
 					getContentbyExtension(".css"),
 					getContentbyExtension(".html"),
 					getContentbyExtension(".txt").Split(Environment.NewLine).ToList()
-				);				
+				);
+
+				var jsonText = JsonConvert.SerializeObject(gameLocation);
+				var fileName = directory[directory.LastIndexOf('/')..];
+
+				if (!Directory.Exists("out/"))
+					Directory.CreateDirectory("out");
+
+				File.WriteAllText($"out/{fileName}.json", jsonText);
 			}
 		}
 
