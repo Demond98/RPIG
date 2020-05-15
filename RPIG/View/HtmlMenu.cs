@@ -22,17 +22,31 @@ namespace RPIG.View
 					ZIndex = "50",
 					Top = "0",
 					Left = "0",
-					Width = "19.5em",
+					Width = "18em",
 					Height = "100%",
 					Margin = "0",
 					Padding = "0",
 					Transition = "left .2s ease-in",
 					BackgroundColor = "#111",
 					BorderRight = "1px solid #444",
-					TextAlign = "center"
+					TextAlign = "center",
+					OverflowY = "auto"
 				}
 			};
 
+			var textElement = new HTMLLabelElement()
+			{
+				TextContent = "AltRight",
+				Style =
+				{
+					Color = "#aaa",
+					FontSize = "38px",
+					Top = "50px",
+					Position = "relative"
+				}
+			};
+
+			Element.AppendChild(textElement);
 			Document.Body.AppendChild(Element);
 		}
 	}

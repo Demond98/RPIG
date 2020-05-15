@@ -23,13 +23,14 @@ namespace RPIG.View
 					Position = "fixed",
 					ZIndex = "0",
 					Top = "0",
-					Left = "19.5em",
-					Width = "100%",
+					Left = "18em",
+					Width = "calc(100% - 18em)",
 					Height = "100%",
 					Margin = "0",
 					Padding = "0",
 					Transition = "left .2s ease-in",
 					BackgroundColor = "#222",
+					TextAlign = "center",
 				}
 			};
 
