@@ -10,20 +10,22 @@ namespace LocationLoader
 	{
 		static void Main(string[] args)
 		{
-			WriteGameLocations();
+			var gameLocations = GetGameLocations().ToArray();
+			var jsonText = JsonConvert.SerializeObject(gameLocations);
+			File.WriteAllText($"AllLocations.json", jsonText);
 		}
 
-		private static void WriteGameLocations()
+		private static IEnumerable<GameLocation> GetGameLocations()
 		{
 			foreach (var directory in Directory.GetDirectories("Assets/"))
 			{
 				var files = new DirectoryInfo(directory).GetFiles();
 
-				var gameLocation = new GameLocation
+				yield return new GameLocation
 				(
-					GetContentByExtension(files, ".css"),
-					GetContentByExtension(files, ".html"),
-					GetContentByExtension(files, ".txt").Split(Environment.NewLine).ToList()
+					getContentbyExtension(".css"),
+					getContentbyExtension(".html"),
+					getContentbyExtension(".txt").Split(Environment.NewLine).ToList()
 				);
 
 				var jsonText = JsonConvert.SerializeObject(gameLocation);
