@@ -31,6 +31,7 @@ namespace RPIG.View
 					Transition = "left .2s ease-in",
 					BackgroundColor = "#222",
 					TextAlign = "center",
+					Color = "#eee"
 				}
 			};
 
@@ -51,9 +52,14 @@ namespace RPIG.View
 					{
 						TextContent = func.Text,
 						OnClick = PushButtonHandler,
-						Disabled = !func.IsActive(state)
+						Disabled = !func.IsActive(state),
+						Style =
+						{
+							MarginTop = "10px"
+						}
 					};
 
+					Element.AppendChild(new HTMLBRElement());
 					Element.AppendChild(button);
 				}
 			});
