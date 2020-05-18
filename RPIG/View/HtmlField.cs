@@ -20,22 +20,22 @@ namespace RPIG.View
 			{
 				Style =
 				{
-					Position = "fixed",
+					Position = "fixed",					
 					ZIndex = "0",
 					Top = "0",
 					Left = "18em",
 					Width = "calc(100% - 18em)",
-					Height = "100%",
+					Height = "100%",					
 					Margin = "0",
 					Padding = "0",
 					Transition = "left .2s ease-in",
 					BackgroundColor = "#222",
 					TextAlign = "center",
+					Color = "#eee"
 				}
 			};
 
 			PushButtonHandler = pushButtonHandler;
-
 			Document.Body.AppendChild(Element);
 		}
 
@@ -54,6 +54,7 @@ namespace RPIG.View
 						Disabled = !func.IsActive(state)
 					};
 
+					Element.AppendChild(new HTMLBRElement());
 					Element.AppendChild(button);
 				}
 			});

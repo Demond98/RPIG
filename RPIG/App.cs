@@ -23,7 +23,7 @@ namespace RPIG
 
 		public static void Main()
 		{
-			GameLocations.Add("left", new GameLocation($@"<h1 style=""color:#eee;"">Left</h1><img src=""left.webp"" width=""189"" height=""255""/>", 
+			GameLocations.Add("left", new GameLocation($@"<h1>Left</h1><img src=""left.webp"" width=""189"" height=""255""/>", 
 				new ButtonFunc(
 					"To center", 
 					state => (GameLocations["center"], state), 
