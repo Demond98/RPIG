@@ -46,6 +46,24 @@ namespace RPIG.View
 				}
 			};
 
+			var button = new HTMLButtonElement()
+			{
+				Style =
+				{ 
+					BackgroundColor = "#111",
+					BorderColor = "#444",
+					BorderWidth = "1px",
+
+					Position = "absolute",
+					Padding = "15px",
+					Right = "0",
+					Top = "0",
+
+					Cursor = "pointer"
+				}
+			};
+
+			Element.AppendChild(button);
 			Element.AppendChild(textElement);
 			Document.Body.AppendChild(Element);
 		}
