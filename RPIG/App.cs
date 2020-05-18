@@ -1,5 +1,4 @@
 ﻿using Bridge;
-using Newtonsoft.Json;
 using System;
 using Bridge.Html5;
 using System.Collections.Generic;

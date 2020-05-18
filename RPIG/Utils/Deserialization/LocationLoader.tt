@@ -15,7 +15,31 @@
 <#@ output extension=".cs" #>
 
 //<#= ((this.Host as IServiceProvider).GetService(typeof(EnvDTE.DTE)) as EnvDTE.DTE).Solution.FullName #>
-<#string solutionPath = ((this.Host as IServiceProvider).GetService(typeof(EnvDTE.DTE)) as EnvDTE.DTE).Solution.FullName; #>
+<#
+string solutionPath = ((this.Host as IServiceProvider).GetService(typeof(EnvDTE.DTE)) as EnvDTE.DTE).Solution.FullName; 
+var locationsList = new List<GameLocationData>();
+foreach (var directory in Directory.GetDirectories($@"{solutionPath}/../RPIG/Assets/Locations/"))
+{
+	var files = new DirectoryInfo(directory).GetFiles();
+
+	var jsonFile = files.FirstOrDefault(f => f.Extension == ".json")
+		?? throw new Exception("Не найден файл по расширению - json");
+
+	var jsonText = File.ReadAllText(jsonFile.FullName);
+	var locationData = JsonConvert.DeserializeObject<GameLocationData>(jsonText);
+
+	var htmlFile = files.FirstOrDefault(f => f.Name == locationData.HtmlText)
+		?? throw new Exception($"Не найден файл по расширению - {locationData.HtmlText}");
+
+	var cssFile = files.FirstOrDefault(f => f.Name == locationData.CssText)
+		?? throw new Exception($"Не найден файл по расширению - {locationData.CssText}");
+
+	locationData.HtmlText = File.ReadAllText(htmlFile.FullName);
+	locationData.CssText = File.ReadAllText(cssFile.FullName);
+
+	locationsList.Add(locationData);
+}
+#>
 
 using RPIG.Engine;
 using System.Collections.Generic;
@@ -25,9 +49,9 @@ public static partial class LocationLoader
 	public static Dictionary<string, GameLocation> Load() 
 	{
 		var locations = new Dictionary<string, GameLocation>();
-		<# for (int i = 0; i < new DataDeserializer().DeserializeGameLocations().Count ; i++)
+		<# for (int i = 0; i < locationsList.Count ; i++)
 		{#>
-			locations.Add("<#=i#>", new GameLocation("", null));
+			locations.Add(@"<#=locationsList[i].HtmlText#>", new GameLocation("", null));
 		<#}#>
 
 		return locations;
@@ -46,37 +70,6 @@ public class GameLocationData
 		HtmlText = htmlText;
 		CssText = cssText;
 		ButtonFunctions = buttonFunctions;
-	}
-}
-
-public class DataDeserializer
-{
-	public List<GameLocationData> DeserializeGameLocations()
-	{
-		var locationsList = new List<GameLocationData>();
-		foreach (var directory in Directory.GetDirectories($@"{solutionPath}/../RPIG/Assets/Locations/"))
-		{
-			var files = new DirectoryInfo(directory).GetFiles();
-
-			var jsonFile = files.FirstOrDefault(f => f.Extension == ".json")
-				?? throw new Exception("Не найден файл по расширению - json");
-
-			var jsonText = File.ReadAllText(jsonFile.FullName);
-			var locationData = JsonConvert.DeserializeObject<GameLocationData>(jsonText);
-
-			var htmlFile = files.FirstOrDefault(f => f.Name == locationData.HtmlText)
-				?? throw new Exception($"Не найден файл по расширению - {locationData.HtmlText}");
-
-			var cssFile = files.FirstOrDefault(f => f.Name == locationData.CssText)
-				?? throw new Exception($"Не найден файл по расширению - {locationData.CssText}");
-
-			locationData.HtmlText = File.ReadAllText(htmlFile.FullName);
-			locationData.CssText = File.ReadAllText(cssFile.FullName);
-
-			locationsList.Add(locationData);
-		}
-
-		return locationsList;
 	}
 }
 #>
