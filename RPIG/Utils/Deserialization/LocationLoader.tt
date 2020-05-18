@@ -1,0 +1,78 @@
+﻿<#@ template debug="true" hostspecific="false" language="C#"#>
+<#@ assembly name="System" #>
+<#@ assembly name="System.Core" #>
+
+<#@ assembly name="Newtonsoft.Json" #>
+
+<#@ import namespace="ReadJsonFiles" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+<#+
+public class GameLocationData
+{
+	public string HtmlText { get; set; }
+	public string CssText { get; set; }
+	public List<string> ButtonFunctions { get; }
+	[JsonConstructor]
+	public GameLocationData(string htmlText, string cssText, List<string> buttonFunctions)
+	{
+		HtmlText = htmlText;
+		CssText = cssText;
+		ButtonFunctions = buttonFunctions;
+	}
+}
+
+public static class DataDeserializer
+{
+	public static List<GameLocationData> DeserializeGameLocations()
+	{
+		var locationsList = new List<GameLocationData>();
+		foreach (var directory in Directory.GetDirectories("Assets/Locations/"))
+		{
+			var files = new DirectoryInfo(directory).GetFiles();
+
+			var jsonFile = files.FirstOrDefault(f => f.Extension == ".json")
+				?? throw new Exception("Не найден файл по расширению - json");
+
+			var jsonText = File.ReadAllText(jsonFile.FullName);
+			var locationData = JsonConvert.DeserializeObject<GameLocationData>(jsonText);
+
+			var htmlFile = files.FirstOrDefault(f => f.Name == locationData.HtmlText)
+				?? throw new Exception($"Не найден файл по расширению - {locationData.HtmlText}");
+
+			var cssFile = files.FirstOrDefault(f => f.Name == locationData.CssText)
+				?? throw new Exception($"Не найден файл по расширению - {locationData.CssText}");
+
+			locationData.HtmlText = File.ReadAllText(htmlFile.FullName);
+			locationData.CssText = File.ReadAllText(cssFile.FullName);
+
+			locationsList.Add(locationData);
+		}
+
+		return locationsList;
+	}
+}
+#>
+
+using RPIG.Engine;
+using System.Collections.Generic;
+
+public static class AllLocationsData
+{
+	public static Dictionary<string, GameLocation> Load() 
+	{
+		var locations = new Dictionary<string, GameLocation>();
+		<# for (int i = 0; i < 10 ; i++)
+		{#>
+			locations.Add("<#=i#>", new GameLocation("", null));
+		<#}#>
+
+		return locations;
+	}
+}

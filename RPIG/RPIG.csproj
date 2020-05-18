@@ -43,10 +43,10 @@
     <Compile Include="Engine\GameLocation.cs" />
     <Compile Include="State\State.cs" />
     <Compile Include="Engine\ButtonFunc.cs" />
-    <Compile Include="Utils\Deserialization\AllLocations.cs">
+    <Compile Include="Utils\Deserialization\LocationLoader.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AllLocations.tt</DependentUpon>
+      <DependentUpon>LocationLoader.tt</DependentUpon>
     </Compile>
     <Compile Include="Utils\Deserialization\GameLocationData.cs" />
     <Compile Include="View\HtmlField.cs" />
@@ -54,7 +54,7 @@
     <Compile Include="View\HtmlWindow.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\SerializedLocations\AllLocations.json">
+    <None Include="Assets\Locations\Location1\index.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="bridge.json" />
@@ -67,19 +67,26 @@
     <Reference Include="Bridge.Html5, Version=17.10.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Bridge.Html5.17.10.0\lib\net40\Bridge.Html5.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=1.17.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bridge.Newtonsoft.Json.1.17.0\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Utils\Deserialization\AllLocations.tt">
+    <Content Include="Assets\Locations\Location1\index.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Locations\Location1\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Utils\Deserialization\LocationLoader.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AllLocations.cs</LastGenOutput>
+      <LastGenOutput>LocationLoader.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Bridge.Min.17.10.1\build\Bridge.Min.targets" Condition="Exists('..\packages\Bridge.Min.17.10.1\build\Bridge.Min.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
