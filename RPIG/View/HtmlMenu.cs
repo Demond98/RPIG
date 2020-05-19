@@ -15,7 +15,6 @@ namespace RPIG.View
 		{
 			Element = new HTMLDivElement
 			{
-				Id = "main-element",
 				Style =
 				{
 					Position = "fixed",
@@ -26,7 +25,6 @@ namespace RPIG.View
 					Height = "100%",
 					Margin = "0",
 					Padding = "0",
-					Transition = "left .2s ease-in",
 					BackgroundColor = "#111",
 					BorderRight = "1px solid #444",
 					TextAlign = "center",
@@ -34,66 +32,69 @@ namespace RPIG.View
 				}
 			};
 
-			var textElement = new HTMLLabelElement()
+			var textElement = new HTMLLabelElement
 			{
 				TextContent = "AltRight",
+				ClassName = "menu-text",
 				Style =
 				{
-					Color = "#aaa",
 					FontSize = "38px",
 					Top = "50px",
 					Position = "relative"
 				}
 			};
 
-			var buttonBackstape = new HTMLButtonElement()
+			var menuStyle = new HTMLStyleElement
 			{
+				InnerHTML = @"
+					.menu-button {
+						background-color: #111;
+						border-color: #444;
+						border-width: 1px;
+						line-height: 0;
+						font-family: Bradley Hand, cursive;
+						cursor: pointer;
+					}
+
+					.menu-text {
+						color: #aaa;
+					}
+				",
+			};
+
+			var buttonBackstape = new HTMLButtonElement
+			{
+				InnerHTML = "<-",
+				ClassName = "menu-button menu-text",
 				Style =
 				{
-					BackgroundColor = "#111",
-					BorderColor = "#444",
-					BorderWidth = "1px",
-					Color = "#aaa",
-
+					FontSize = "30px",
 					Position = "absolute",
 					Padding = "14px 0px",
 					Height = "30px",
 					Width = "75px",
 					Left = "65px",
-					Top = "0",
-
-					FontSize = "30px",
-					LineHeight = "0",
-					FontFamily = "Bradley Hand, cursive",
-					Cursor = "pointer"
+					Top = "0"
 				},
-				InnerHTML = "<-"
 			};
 
-			var buttonForward = new HTMLButtonElement()
+			var buttonForward = new HTMLButtonElement
 			{
+				InnerHTML = "->",
+				ClassName = "menu-button menu-text",
 				Style =
 				{
-					BackgroundColor = "#111",
-					BorderColor = "#444",
-					BorderWidth = "1px",
-					Color = "#aaa",
-
+					FontSize = "30px",
 					Position = "absolute",
 					Padding = "14px 0px",
 					Height = "30px",
 					Width = "75px",
 					Left = "150px",
 					Top = "0",
-
-					FontSize = "30px",
-					LineHeight = "0",
-					FontFamily = "Bradley Hand, cursive",
-					Cursor = "pointer"
 				},
-				InnerHTML = "->"
 			};
 
+			Document.Body.AppendChild(menuStyle);
 			Element.AppendChild(buttonBackstape);
 			Element.AppendChild(buttonForward);
 			Element.AppendChild(textElement);

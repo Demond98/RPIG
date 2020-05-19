@@ -28,7 +28,6 @@ namespace RPIG.View
 					Height = "100%",					
 					Margin = "0",
 					Padding = "0",
-					Transition = "left .2s ease-in",
 					BackgroundColor = "#222",
 					TextAlign = "center",
 					Color = "#eee"
@@ -39,13 +38,13 @@ namespace RPIG.View
 			Document.Body.AppendChild(Element);
 		}
 
-		public void DrawLocation(GameLocation location, State state)
+		public void DrawLocation(State state)
 		{
 			Task.Run(() =>
 			{
-				Element.InnerHTML = location.HtmlText;
+				Element.InnerHTML = state.Location.HtmlText;
 
-				foreach (var func in location.TransitionFuncs)
+				foreach (var func in state.Location.TransitionFuncs)
 				{
 					var button = new HTMLButtonElement
 					{

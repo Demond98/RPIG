@@ -10,25 +10,22 @@ namespace RPIG.Engine
 {
 	public class Game
 	{
-		public Stack<(GameLocation location, State state)> StatesStack;
-		public GameLocation CurrentLocation;
+		public Stack<State> StatesStack;
 		public State CurrentState;
 		
-		//практически везде стейт с локацией передаётся в свзяке
-		//мб стоит их в отдельный класс добавить или в стейт запихнуть
-		public event Action<GameLocation, State> LocationChanged;
+		public event Action<State> LocationChanged;
 
 		public void PushButtonHandler<T>(MouseEvent<T> e) where T : HTMLElement
 			=> PushButton(e.CurrentTarget.TextContent);
 
 		private void PushButton(string actionText)
 		{
-			(CurrentLocation, CurrentState) = CurrentLocation
+			CurrentState = CurrentState.Location
 				.TransitionFuncs
 				.First(a => a.Text == actionText)
 				.Transit(CurrentState);
 
-			LocationChanged?.Invoke(CurrentLocation, CurrentState);
+			LocationChanged?.Invoke(CurrentState);
 		}
 	}
 }

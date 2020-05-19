@@ -18,7 +18,7 @@ namespace RPIG.View
 			Menu = new HtmlMenu();
 			Field = new HtmlField(game.PushButtonHandler);
 
-			Field.DrawLocation(game.CurrentLocation, game.CurrentState);
+			Field.DrawLocation(game.CurrentState);
 			game.LocationChanged += Field.DrawLocation;
 		}
 	}
