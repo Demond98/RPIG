@@ -46,24 +46,56 @@ namespace RPIG.View
 				}
 			};
 
-			var button = new HTMLButtonElement()
+			var buttonBackstape = new HTMLButtonElement()
 			{
 				Style =
-				{ 
+				{
 					BackgroundColor = "#111",
 					BorderColor = "#444",
 					BorderWidth = "1px",
+					Color = "#aaa",
 
 					Position = "absolute",
-					Padding = "15px",
-					Right = "0",
+					Padding = "14px 0px",
+					Height = "30px",
+					Width = "75px",
+					Left = "65px",
 					Top = "0",
 
+					FontSize = "30px",
+					LineHeight = "0",
+					FontFamily = "Bradley Hand, cursive",
 					Cursor = "pointer"
-				}
+				},
+				InnerHTML = "<-"
 			};
 
-			Element.AppendChild(button);
+			var buttonForward = new HTMLButtonElement()
+			{
+				Style =
+				{
+					BackgroundColor = "#111",
+					BorderColor = "#444",
+					BorderWidth = "1px",
+					Color = "#aaa",
+
+					Position = "absolute",
+					Padding = "14px 0px",
+					Height = "30px",
+					Width = "75px",
+					Left = "150px",
+					Top = "0",
+
+					FontSize = "30px",
+					LineHeight = "0",
+					FontFamily = "Bradley Hand, cursive",
+					Cursor = "pointer"
+				},
+				InnerHTML = "->"
+			};
+
+			Element.AppendChild(buttonBackstape);
+			Element.AppendChild(buttonForward);
 			Element.AppendChild(textElement);
 			Document.Body.AppendChild(Element);
 		}
