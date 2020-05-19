@@ -45,7 +45,7 @@ namespace RPIG.View
 			{
 				Element.InnerHTML = location.HtmlText;
 
-				foreach (var func in location.TransitionFuncs)
+				foreach (var func in location.ButtonFuncs)
 				{
 					var button = new HTMLButtonElement
 					{

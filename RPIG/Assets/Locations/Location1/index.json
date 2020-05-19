@@ -1,5 +1,11 @@
 ﻿{
 	"HtmlText":"index.html",
 	"CssText":"index.css",
-	"ButtonFunctions":["sdf","zgbzdfgb"]
+	"ButtonFunctions":[
+	{
+		"Text": "To center", 
+		"Transit": "state => (locations[\"center\"], state)", 
+		"IsHide": "null", 
+		"IsActive": "s => true"
+	}]
 }

@@ -14,30 +14,31 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 
-//<#= ((this.Host as IServiceProvider).GetService(typeof(EnvDTE.DTE)) as EnvDTE.DTE).Solution.FullName #>
 <#
 string solutionPath = ((this.Host as IServiceProvider).GetService(typeof(EnvDTE.DTE)) as EnvDTE.DTE).Solution.FullName; 
-var locationsList = new List<GameLocationData>();
+var locationsDictionary = new Dictionary<string, GameLocationJsonData>();
 foreach (var directory in Directory.GetDirectories($@"{solutionPath}/../RPIG/Assets/Locations/"))
 {
-	var files = new DirectoryInfo(directory).GetFiles();
+	var directoryInfo = new DirectoryInfo(directory);
+	var files = directoryInfo.GetFiles();
 
 	var jsonFile = files.FirstOrDefault(f => f.Extension == ".json")
 		?? throw new Exception("Не найден файл по расширению - json");
 
 	var jsonText = File.ReadAllText(jsonFile.FullName);
-	var locationData = JsonConvert.DeserializeObject<GameLocationData>(jsonText);
 
-	var htmlFile = files.FirstOrDefault(f => f.Name == locationData.HtmlText)
-		?? throw new Exception($"Не найден файл по расширению - {locationData.HtmlText}");
+	var locationJsonData = JsonConvert.DeserializeObject<GameLocationJsonData>(jsonText);
 
-	var cssFile = files.FirstOrDefault(f => f.Name == locationData.CssText)
-		?? throw new Exception($"Не найден файл по расширению - {locationData.CssText}");
+	var htmlFile = files.FirstOrDefault(f => f.Name == locationJsonData.HtmlText)
+		?? throw new Exception($"Не найден файл по расширению - {locationJsonData.HtmlText}");
 
-	locationData.HtmlText = File.ReadAllText(htmlFile.FullName);
-	locationData.CssText = File.ReadAllText(cssFile.FullName);
+	var cssFile = files.FirstOrDefault(f => f.Name == locationJsonData.CssText)
+		?? throw new Exception($"Не найден файл по расширению - {locationJsonData.CssText}");
 
-	locationsList.Add(locationData);
+	locationJsonData.HtmlText = File.ReadAllText(htmlFile.FullName);
+	locationJsonData.CssText = File.ReadAllText(cssFile.FullName);
+
+	locationsDictionary.Add(directoryInfo.Name, locationJsonData);
 }
 #>
 
@@ -49,9 +50,18 @@ public static partial class LocationLoader
 	public static Dictionary<string, GameLocation> Load() 
 	{
 		var locations = new Dictionary<string, GameLocation>();
-		<# for (int i = 0; i < locationsList.Count ; i++)
+
+		<# foreach(var locationData in locationsDictionary)
 		{#>
-			locations.Add(@"<#=locationsList[i].HtmlText#>", new GameLocation("", null));
+			var locationKey = "<#=locationData.Key #>";
+			locations.Add
+				(
+					locationKey,
+					new GameLocation (
+					@"<#=locationData.Value.HtmlText#>",
+					@"<#=locationData.Value.CssText#>",
+					<#=string.Join(", ", locationData.Value.ButtonFunctions.Select(bf => bf.ToString()).ToArray())#>)
+				);
 		<#}#>
 
 		return locations;
@@ -59,17 +69,36 @@ public static partial class LocationLoader
 }
 
 <#+
-public class GameLocationData
+public class GameLocationJsonData
 {
 	public string HtmlText { get; set; }
 	public string CssText { get; set; }
-	public List<string> ButtonFunctions { get; }
+	public List<ButtonFunctionJsonData> ButtonFunctions { get; }
 	[JsonConstructor]
-	public GameLocationData(string htmlText, string cssText, List<string> buttonFunctions)
+	public GameLocationJsonData(string htmlText, string cssText, List<ButtonFunctionJsonData> buttonFunctions)
 	{
 		HtmlText = htmlText;
 		CssText = cssText;
 		ButtonFunctions = buttonFunctions;
 	}
+}
+
+public class ButtonFunctionJsonData
+{
+	public string Text { get; set; }
+	public string Transit { get; set; }
+	public string IsHide { get; set; }
+	public string IsActive { get; set; }
+	[JsonConstructor]
+	public ButtonFunctionJsonData(string text, string transit, string isHide, string isActive)
+	{
+		Text = text;
+		Transit = transit;
+		IsHide = isHide;
+		IsActive = isActive;
+	}
+
+	public override string ToString()
+		=> $"new ButtonFunc(\"{Text}\", {Transit}, {IsHide}, {IsActive})";
 }
 #>
