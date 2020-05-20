@@ -1,7 +1,6 @@
 ﻿
-
-
 using RPIG.Engine;
+using RPIG.States;
 using System.Collections.Generic;
 
 public static partial class LocationLoader
@@ -19,7 +18,7 @@ public static partial class LocationLoader
 ",
 					@"h1 {
 }",
-					new ButtonFunc("To center", state => (locations["center"], state), null, s => true))
+					new ButtonFunc("To center", state => new State(){ Location = locations["Location1"] }, null, s => true))
 				);
 		
 		return locations;

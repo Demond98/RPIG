@@ -13,7 +13,6 @@
 <#@ import namespace="System.Collections" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
-
 <#
 string solutionPath = ((this.Host as IServiceProvider).GetService(typeof(EnvDTE.DTE)) as EnvDTE.DTE).Solution.FullName; 
 var locationsDictionary = new Dictionary<string, GameLocationJsonData>();
@@ -40,9 +39,11 @@ foreach (var directory in Directory.GetDirectories($@"{solutionPath}/../RPIG/Ass
 
 	locationsDictionary.Add(directoryInfo.Name, locationJsonData);
 }
-#>
 
+
+#>
 using RPIG.Engine;
+using RPIG.States;
 using System.Collections.Generic;
 
 public static partial class LocationLoader

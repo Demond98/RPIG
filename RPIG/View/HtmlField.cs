@@ -42,9 +42,9 @@ namespace RPIG.View
 		{
 			Task.Run(() =>
 			{
-				Element.InnerHTML = state.Location.HtmlText;
+				Element.InnerHTML = state.Location.HtmlElement.OuterHTML;
 
-				foreach (var func in state.Location.TransitionFuncs)
+				foreach (var func in state.Location.ButtonFuncs)
 				{
 					var button = new HTMLButtonElement
 					{

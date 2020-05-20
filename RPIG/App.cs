@@ -22,6 +22,7 @@ namespace RPIG
 
 		public static void Main()
 		{
+			/*
 			GameLocations.Add("left", new GameLocation($@"<h1>Left</h1><img src=""left.webp"" width=""189"" height=""255""/>",
 				new ButtonFunc(
 					"To center",
@@ -43,12 +44,14 @@ namespace RPIG
 				new ButtonFunc("To the left", state => new State() { Location = GameLocations["left"] }, null, s => true),
 				new ButtonFunc("To the right", state => new State() { Location = GameLocations["right"] }, null, s => true)
 			));
+			*/
 
+			GameLocations = LocationLoader.Load();
 			Game = new Game()
 			{
 				CurrentState = new State()
 				{
-					Location = GameLocations["center"]
+					Location = GameLocations["Location1"]
 				}
 			};
 			Window = new HtmlWindow(Game);

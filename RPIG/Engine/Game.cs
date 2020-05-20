@@ -21,7 +21,7 @@ namespace RPIG.Engine
 		private void PushButton(string actionText)
 		{
 			CurrentState = CurrentState.Location
-				.TransitionFuncs
+				.ButtonFuncs
 				.First(a => a.Text == actionText)
 				.Transit(CurrentState);
 

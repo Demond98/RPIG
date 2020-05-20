@@ -1,11 +1,12 @@
 ﻿{
-	"HtmlText":"index.html",
-	"CssText":"index.css",
-	"ButtonFunctions":[
-	{
-		"Text": "To center", 
-		"Transit": "state => (locations[\"center\"], state)", 
-		"IsHide": "null", 
-		"IsActive": "s => true"
-	}]
+  "HtmlText": "index.html",
+  "CssText": "index.css",
+  "ButtonFunctions": [
+    {
+      "Text": "To center",
+      "Transit": "state => new State(){ Location = locations[\"Location1\"] }",
+      "IsHide": "null",
+      "IsActive": "s => true"
+    }
+  ]
 }

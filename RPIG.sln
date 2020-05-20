@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPIG", "RPIG\RPIG.csproj", "{D41D623D-C5FB-4FE9-A2FF-15AF934C8FE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationLoader", "LocationLoader\LocationLoader.csproj", "{9FEA604E-64CF-40A1-AEC0-82DC5AF4A5CA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{D41D623D-C5FB-4FE9-A2FF-15AF934C8FE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D41D623D-C5FB-4FE9-A2FF-15AF934C8FE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D41D623D-C5FB-4FE9-A2FF-15AF934C8FE4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9FEA604E-64CF-40A1-AEC0-82DC5AF4A5CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9FEA604E-64CF-40A1-AEC0-82DC5AF4A5CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9FEA604E-64CF-40A1-AEC0-82DC5AF4A5CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9FEA604E-64CF-40A1-AEC0-82DC5AF4A5CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
