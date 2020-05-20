@@ -13,6 +13,7 @@ namespace LocationLoader
 			var gameLocations = GetGameLocations().ToArray();
 			var jsonText = JsonConvert.SerializeObject(gameLocations);
 			File.WriteAllText($"AllLocations.json", jsonText);
+			string.Join
 		}
 
 		private static IEnumerable<GameLocation> GetGameLocations()
