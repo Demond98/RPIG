@@ -9,7 +9,6 @@ namespace RPIG.Engine
 {
 	public class GameLocation
 	{
-		//public readonly string HtmlText;
 		public readonly HTMLDivElement HtmlElement;
 		public readonly List<ButtonFunc> ButtonFuncs;
 

@@ -1,0 +1,17 @@
+﻿{
+  "LocationName": "start",
+  "ButtonFunctions": [
+    {
+      "Text": "To left",
+      "Transit": "state => new State(){ Location = locations[\"left\"] }",
+      "IsHide": "null",
+      "IsActive": "s => true"
+    },
+    {
+      "Text": "To right",
+      "Transit": "state => new State(){ Location = locations[\"right\"] }",
+      "IsHide": "null",
+      "IsActive": "s => true"
+    }
+  ]
+}

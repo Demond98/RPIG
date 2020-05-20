@@ -1,10 +1,9 @@
-﻿<#@ template debug="true" hostspecific="true" language="C#"#>
+﻿<#@ template debug="false" hostspecific="true" language="C#"#>
 <#@ assembly name="System.Runtime" #>
 <#@ assembly name="System" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="Newtonsoft.Json" #>
 <#@ assembly name="EnvDTE" #>
-
 <#@ import namespace="System.Reflection" #>
 <#@ import namespace="Newtonsoft.Json" #>
 <#@ import namespace="System.IO" #>
@@ -12,6 +11,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Threading.Tasks" #>
 <#@ output extension=".cs" #>
 <#
 string solutionPath = ((this.Host as IServiceProvider).GetService(typeof(EnvDTE.DTE)) as EnvDTE.DTE).Solution.FullName; 
@@ -21,23 +21,22 @@ foreach (var directory in Directory.GetDirectories($@"{solutionPath}/../RPIG/Ass
 	var directoryInfo = new DirectoryInfo(directory);
 	var files = directoryInfo.GetFiles();
 
-	var jsonFile = files.FirstOrDefault(f => f.Extension == ".json")
-		?? throw new Exception("Не найден файл по расширению - json");
+	var jsonFile = files.First(f => f.Extension == ".json");
+	var htmlFile = files.First(f => f.Extension == ".html");
+	var cssFile = files.First(f => f.Extension == ".css");
 
 	var jsonText = File.ReadAllText(jsonFile.FullName);
+	var jsonTask = Task.Run(() => JsonConvert.DeserializeObject<GameLocationJsonData>(jsonText));
 
-	var locationJsonData = JsonConvert.DeserializeObject<GameLocationJsonData>(jsonText);
+	var htmlText = File.ReadAllText(htmlFile.FullName);
+	var cssText = File.ReadAllText(cssFile.FullName);
 
-	var htmlFile = files.FirstOrDefault(f => f.Name == locationJsonData.HtmlText)
-		?? throw new Exception($"Не найден файл по расширению - {locationJsonData.HtmlText}");
+	jsonTask.Wait();
+	var locationJsonData = jsonTask.Result;
+	locationJsonData.HtmlText = htmlText;
+	locationJsonData.CssText = cssText;
 
-	var cssFile = files.FirstOrDefault(f => f.Name == locationJsonData.CssText)
-		?? throw new Exception($"Не найден файл по расширению - {locationJsonData.CssText}");
-
-	locationJsonData.HtmlText = File.ReadAllText(htmlFile.FullName);
-	locationJsonData.CssText = File.ReadAllText(cssFile.FullName);
-
-	locationsDictionary.Add(directoryInfo.Name, locationJsonData);
+	locationsDictionary.Add(locationJsonData.LocationName, locationJsonData);
 }
 
 
@@ -54,15 +53,13 @@ public static partial class LocationLoader
 
 		<# foreach(var locationData in locationsDictionary)
 		{#>
-			var locationKey = "<#=locationData.Key #>";
-			locations.Add
-				(
-					locationKey,
-					new GameLocation (
-					@"<#=locationData.Value.HtmlText#>",
-					@"<#=locationData.Value.CssText#>",
-					<#=string.Join(", ", locationData.Value.ButtonFunctions.Select(bf => bf.ToString()).ToArray())#>)
-				);
+locations.Add(
+			"<#=locationData.Key #>",
+			new GameLocation (
+				@"<#=locationData.Value.HtmlText#>",
+				@"<#=locationData.Value.CssText#>",
+				<#=string.Join(", ", locationData.Value.ButtonFunctions.Select(bf => bf.ToString()).ToArray())#>)
+			);
 		<#}#>
 
 		return locations;
@@ -74,14 +71,8 @@ public class GameLocationJsonData
 {
 	public string HtmlText { get; set; }
 	public string CssText { get; set; }
-	public List<ButtonFunctionJsonData> ButtonFunctions { get; }
-	[JsonConstructor]
-	public GameLocationJsonData(string htmlText, string cssText, List<ButtonFunctionJsonData> buttonFunctions)
-	{
-		HtmlText = htmlText;
-		CssText = cssText;
-		ButtonFunctions = buttonFunctions;
-	}
+	public string LocationName { get; set; }
+	public List<ButtonFunctionJsonData> ButtonFunctions { get; set; }
 }
 
 public class ButtonFunctionJsonData
@@ -90,14 +81,6 @@ public class ButtonFunctionJsonData
 	public string Transit { get; set; }
 	public string IsHide { get; set; }
 	public string IsActive { get; set; }
-	[JsonConstructor]
-	public ButtonFunctionJsonData(string text, string transit, string isHide, string isActive)
-	{
-		Text = text;
-		Transit = transit;
-		IsHide = isHide;
-		IsActive = isActive;
-	}
 
 	public override string ToString()
 		=> $"new ButtonFunc(\"{Text}\", {Transit}, {IsHide}, {IsActive})";

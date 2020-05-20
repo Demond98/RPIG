@@ -15,6 +15,14 @@ namespace RPIG.Engine
 		
 		public event Action<State> LocationChanged;
 
+		public Game(GameLocation startLocation)
+		{
+			CurrentState = new State()
+			{
+				Location = startLocation
+			};
+		}
+
 		public void PushButtonHandler<T>(MouseEvent<T> e) where T : HTMLElement
 			=> PushButton(e.CurrentTarget.TextContent);
 
