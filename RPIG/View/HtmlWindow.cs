@@ -15,7 +15,7 @@ namespace RPIG.View
 
 		public HtmlWindow(Game game)
 		{
-			Menu = new HtmlMenu();
+			Menu = new HtmlMenu(game);
 			Field = new HtmlField(game.PushButtonHandler);
 
 			Field.DrawLocation(game.CurrentState);

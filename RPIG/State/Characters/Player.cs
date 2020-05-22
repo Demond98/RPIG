@@ -10,5 +10,19 @@ namespace RPIG.States.Characters
 	{
 		public int Money;
 
+		public Player()
+		{
+
+		}
+
+		public Player(Player player)
+		{
+			Money = player.Money;
+		}
+
+		public Player Copy()
+		{
+			return new Player(this);
+		}
 	}
 }

@@ -3,13 +3,13 @@
   "ButtonFunctions": [
     {
       "Text": "To center",
-      "Transit": "state => new State(){ Location = locations[\"start\"] }",
+      "Transit": "state => RPIG.App.ChangeState(state, \"start\")",
       "IsHide": "null",
       "IsActive": "s => true"
     },
     {
       "Text": "To right",
-      "Transit": "state => new State(){ Location = locations[\"right\"] }",
+      "Transit": "state => RPIG.App.ChangeState(state, \"right\")",
       "IsHide": "null",
       "IsActive": "s => false"
     }

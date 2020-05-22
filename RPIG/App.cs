@@ -26,5 +26,12 @@ namespace RPIG
 
 			Window = new HtmlWindow(Game);
 		}
+
+		public static State ChangeState(State state, string location)
+		{
+			state.Location = GameLocations[location];
+			state.Player.Money++;
+			return state;
+		}
 	}
 }

@@ -48,7 +48,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LocationLoader.tt</DependentUpon>
     </Compile>
-    <Compile Include="Utils\Deserialization\GameLocationData.cs" />
     <Compile Include="View\HtmlField.cs" />
     <Compile Include="View\HtmlMenu.cs" />
     <Compile Include="View\HtmlWindow.cs" />

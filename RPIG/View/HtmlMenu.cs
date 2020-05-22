@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bridge.Html5;
+using RPIG.Engine;
 
 namespace RPIG.View
 {
@@ -11,7 +12,7 @@ namespace RPIG.View
 	{
 		public readonly HTMLDivElement Element;
 
-		public HtmlMenu()
+		public HtmlMenu(Game game)
 		{
 			Element = new HTMLDivElement
 			{
@@ -62,7 +63,7 @@ namespace RPIG.View
 				",
 			};
 
-			var buttonBackstape = new HTMLButtonElement
+			var buttonBackward = new HTMLButtonElement
 			{
 				InnerHTML = "<-",
 				ClassName = "menu-button menu-text",
@@ -76,6 +77,7 @@ namespace RPIG.View
 					Left = "65px",
 					Top = "0"
 				},
+				OnClick = game.HistoryBackward
 			};
 
 			var buttonForward = new HTMLButtonElement
@@ -92,10 +94,11 @@ namespace RPIG.View
 					Left = "150px",
 					Top = "0",
 				},
+				OnClick = game.HistoryForward
 			};
 
 			Document.Body.AppendChild(menuStyle);
-			Element.AppendChild(buttonBackstape);
+			Element.AppendChild(buttonBackward);
 			Element.AppendChild(buttonForward);
 			Element.AppendChild(textElement);
 			Document.Body.AppendChild(Element);
