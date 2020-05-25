@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public static partial class LocationLoader
 {
-	public static Dictionary<string, GameLocation> Load()
+	public static Dictionary<string, GameLocation> Load() 
 	{
 		var locations = new Dictionary<string, GameLocation>();
 
@@ -21,6 +21,7 @@ The man speaking is an older gentleman. His face is aged, but hard and stern. Hi
 <br>
 Younger ManThank you, sir. We're meeting today, this November 1st, to discuss the incident surrounding the northern branch of our company. Our records will indicate that nearly a year ago, we authorized funding towards an initiative requested by...
 <br>
+<div class='variable' property='RPIG.App.Game.CurrentState.Player.Money'></div>
 The younger man drones on before he is interrupted by a woman sitting near him.
 <br>
 WomanExcuse me, sir, but I think we're all familiar with the incident itself. I think it would be more beneficial for us now, to know a little bit more about the individual found to be at the center of it all.
