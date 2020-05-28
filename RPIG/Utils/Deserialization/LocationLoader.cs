@@ -9,7 +9,7 @@ public static partial class LocationLoader
 		var locations = new Dictionary<string, GameLocation>();
 
 		locations.Add(
-			"start",
+			"Center",
 			new GameLocation (
 				@"Several men and women in suits gather around a large conference table in the executive meeting room. The office sits in one of the highest floors of one of the tallest buildings in the city.
 <br>
@@ -32,26 +32,25 @@ Younger Man...Yes, of course... Here, the document I'm handing out to you all co
 <br>
 The old man from earlier is fumbling through the stack of files that we given to him.
 <br>
-Older ManAh, hm... It looks like you've given me too many documents? I'm seeing at least three employee records here, which is the one we're discussing today?",
+Older ManAh, hm... It looks like you've given me too many documents? I'm seeing at least three employee records here, which is the one we're discussing today?
+
+<button></button>",
 				@"h1 {
-}",
-				new ButtonFunc("To left", state => RPIG.App.ChangeState(state, "left"), null, s => true), new ButtonFunc("To right", state => RPIG.App.ChangeState(state, "right"), null, s => true))
+}")
 			);
 		locations.Add(
-			"left",
+			"Let",
 			new GameLocation (
 				@"<h1>Left</h1>",
 				@"h1 {
-}",
-				new ButtonFunc("To center", state => RPIG.App.ChangeState(state, "start"), null, s => true), new ButtonFunc("To right", state => RPIG.App.ChangeState(state, "right"), null, s => false))
+}")
 			);
 		locations.Add(
-			"right",
+			"Right",
 			new GameLocation (
 				@"<h1>Right</h1>",
 				@"h1 {
-}",
-				new ButtonFunc("To center", state => RPIG.App.ChangeState(state, "start"), null, s => true), new ButtonFunc("To left", state => RPIG.App.ChangeState(state, "left"), null, s => false))
+}")
 			);
 		
 		return locations;

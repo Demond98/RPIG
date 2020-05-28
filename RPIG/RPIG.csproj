@@ -37,12 +37,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="GameLogic\GameLogic.cs" />
     <Compile Include="State\Characters\Player.cs" />
     <Compile Include="Engine\Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Engine\GameLocation.cs" />
     <Compile Include="State\State.cs" />
-    <Compile Include="Engine\ButtonFunc.cs" />
     <Compile Include="Utils\Deserialization\LocationLoader.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

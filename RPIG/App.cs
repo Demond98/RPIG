@@ -13,6 +13,8 @@ namespace RPIG
 {
 	public static class App
 	{
+		public const string GAME_CURRENTSTATE = "RPIG.App.Game.CurrentState";
+		
 		public static Game Game;
 		public static HtmlWindow Window;
 
@@ -27,11 +29,20 @@ namespace RPIG
 			Window = new HtmlWindow(Game);
 		}
 
-		public static State ChangeState(State state, string location)
+		public static void ChangeState(string transitFunctionBody, string nextStateName)
 		{
-			state.Location = GameLocations[location];
-			state.Player.Money++;
-			return state;
+			var funcionBody = $"{transitFunctionBody}({GAME_CURRENTSTATE}, {nextStateName})";
+			Game.CurrentState = Script.Eval<State>(funcionBody);
+			Game.SaveState();
+			Window.Field.DrawLocation(Game.CurrentState);
 		}
+
+		//public static State ChangeState(State state, string location)
+		//{
+		//	state.Location = GameLocations[location];
+		//	state.Player.Money++;
+
+		//	return state;
+		//}
 	}
 }

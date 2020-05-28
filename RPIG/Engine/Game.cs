@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bridge;
 using Bridge.Html5;
 using RPIG.States;
 using RPIG.States.Characters;
@@ -15,8 +16,6 @@ namespace RPIG.Engine
 		public Stack<State> StatesStackInFuture;
 		public State CurrentState;
 		public State StateOnLoad;
-
-		public event Action<State> LocationChanged;
 
 		public Game(GameLocation startLocation)
 		{
@@ -44,24 +43,15 @@ namespace RPIG.Engine
 			pushStack.Push(StateOnLoad.Copy());
 			StateOnLoad = popStack.Pop();
 			CurrentState = StateOnLoad.Copy();
-			LocationChanged?.Invoke(StateOnLoad);
 		}
 
-		public void PushButtonHandler<T>(MouseEvent<T> e) where T : HTMLElement
-			=> PushButton(e.CurrentTarget.TextContent);
+		
 
-		private void PushButton(string actionText)
+		public void SaveState()
 		{
 			StatesStack.Push(StateOnLoad.Copy());
 			StatesStackInFuture.Clear();
-
-			StateOnLoad = CurrentState.Location
-				.ButtonFuncs
-				.First(a => a.Text == actionText)
-				.Transit(CurrentState);
 			CurrentState = StateOnLoad.Copy();
-			
-			LocationChanged?.Invoke(CurrentState);
 		}
 	}
 }

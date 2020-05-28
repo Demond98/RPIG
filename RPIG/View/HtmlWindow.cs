@@ -16,10 +16,10 @@ namespace RPIG.View
 		public HtmlWindow(Game game)
 		{
 			Menu = new HtmlMenu(game);
-			Field = new HtmlField(game.PushButtonHandler);
+			Field = new HtmlField();
 
 			Field.DrawLocation(game.CurrentState);
-			game.LocationChanged += Field.DrawLocation;
+			//game.LocationChanged += Field.DrawLocation;
 		}
 	}
 }

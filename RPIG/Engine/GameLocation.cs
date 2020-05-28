@@ -10,15 +10,13 @@ namespace RPIG.Engine
 	public class GameLocation
 	{
 		public readonly HTMLDivElement HtmlElement;
-		public readonly List<ButtonFunc> ButtonFuncs;
 
-		public GameLocation(HTMLDivElement htmlElement, params ButtonFunc[] buttonFuncs)
+		public GameLocation(HTMLDivElement htmlElement)
 		{
 			HtmlElement = htmlElement;
-			ButtonFuncs = buttonFuncs.ToList();
 		}
 
-		public GameLocation(string htmlText, string cssText, params ButtonFunc[] buttonFuncs)
+		public GameLocation(string htmlText, string cssText)
 		{
 			HtmlElement = new HTMLDivElement()
 			{
@@ -26,8 +24,6 @@ namespace RPIG.Engine
 			};
 
 			HtmlElement.SetAttribute("style", cssText);
-
-			ButtonFuncs = buttonFuncs.ToList();
 		}
 	}
 }
