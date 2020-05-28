@@ -53,15 +53,6 @@
     <Compile Include="View\HtmlWindow.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Locations\Center\index.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\Locations\Let\index.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\Locations\Right\index.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="bridge.json" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -86,10 +77,10 @@
     <Content Include="Assets\Locations\Center\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Locations\Let\index.css">
+    <Content Include="Assets\Locations\Left\index.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Locations\Let\index.html">
+    <Content Include="Assets\Locations\Left\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Locations\Right\index.css">

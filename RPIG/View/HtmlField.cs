@@ -83,8 +83,8 @@ namespace RPIG.View
 				var nextStateName = GetStateButtonAttribute(stateButton, NEXT_LOCATION);
 
 				stateButton.OnClick = _ => App.ChangeState(transitFuncBody, nextStateName);
-				stateButton.Disabled = ButtonFuncPredicate(stateButton, IS_ACTIVE);
-				stateButton.Hidden = ButtonFuncPredicate(stateButton, IS_HIDE);
+				//stateButton.Disabled = ButtonFuncPredicate(stateButton, IS_ACTIVE);
+				//stateButton.Hidden = ButtonFuncPredicate(stateButton, IS_HIDE);
 			}
 		}
 

@@ -34,12 +34,18 @@ The old man from earlier is fumbling through the stack of files that we given to
 <br>
 Older ManAh, hm... It looks like you've given me too many documents? I'm seeing at least three employee records here, which is the one we're discussing today?
 
-<button></button>",
+<button class='change-location' 
+		is-active='RPIG.GameLogic.GameLogic.FOO'
+		is-hide='RPIG.GameLogic.GameLogic.FOO'
+		transit='RPIG.GameLogic.GameLogic.ChangeStateFirst'
+		next-location='Left'>
+	Kek
+</button>",
 				@"h1 {
 }")
 			);
 		locations.Add(
-			"Let",
+			"Left",
 			new GameLocation (
 				@"<h1>Left</h1>",
 				@"h1 {

@@ -24,25 +24,17 @@ namespace RPIG
 		public static void Main()
 		{
 			GameLocations = LocationLoader.Load();
-			Game = new Game(GameLocations["start"]);
+			Game = new Game(GameLocations["Center"]);
 
 			Window = new HtmlWindow(Game);
 		}
 
-		public static void ChangeState(string transitFunctionBody, string nextStateName)
+		public static void ChangeState(string transitFunctionBody, string nextLocationName)
 		{
-			var funcionBody = $"{transitFunctionBody}({GAME_CURRENTSTATE}, {nextStateName})";
-			Game.CurrentState = Script.Eval<State>(funcionBody);
+			var functionBody = $"{transitFunctionBody}({GAME_CURRENTSTATE}, \"{nextLocationName}\")";
+			Game.CurrentState = Script.Eval<State>(functionBody);
 			Game.SaveState();
 			Window.Field.DrawLocation(Game.CurrentState);
 		}
-
-		//public static State ChangeState(State state, string location)
-		//{
-		//	state.Location = GameLocations[location];
-		//	state.Player.Money++;
-
-		//	return state;
-		//}
 	}
 }
