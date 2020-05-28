@@ -11,7 +11,7 @@ namespace RPIG.GameLogic
 	{
 		public static State ChangeStateFirst(State state)
 		{
-			state.Location = App.GameLocations["Left"];
+			state.Location = App.GameLocations[App.LocationName.Left];
 			state.Player.Money++;
 
 			return state;

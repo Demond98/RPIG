@@ -12,10 +12,10 @@ namespace RPIG.Engine
 {
 	public class Game
 	{
+		public State CurrentState { get; private set; }
+		private State StateOnLoad;
 		private Stack<State> StatesStack;
 		private Stack<State> StatesStackInFuture;
-		private State StateOnLoad;
-		public State CurrentState { get; private set; }
 
 		public Game(GameLocation startLocation)
 		{
@@ -29,20 +29,22 @@ namespace RPIG.Engine
 			StateOnLoad = CurrentState.Copy();
 		}
 
-		public void HistoryBackward(MouseEvent<HTMLButtonElement> mouseEvent)
+		public bool HistoryBackward()
 			=> HistoryMove(StatesStackInFuture, StatesStack);
 
-		public void HistoryForward(MouseEvent<HTMLButtonElement> mouseEvent)
+		public bool HistoryForward()
 			=> HistoryMove(StatesStack, StatesStackInFuture);
 
-		private void HistoryMove(Stack<State> pushStack, Stack<State> popStack)
+		private bool HistoryMove(Stack<State> pushStack, Stack<State> popStack)
 		{
 			if (popStack.Count < 1)
-				return;
+				return false;
 
 			pushStack.Push(StateOnLoad.Copy());
 			StateOnLoad = popStack.Pop();
 			CurrentState = StateOnLoad.Copy();
+
+			return true;
 		}
 
 		public void ChangeState(State newState)

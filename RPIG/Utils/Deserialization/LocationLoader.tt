@@ -6,12 +6,14 @@
 using RPIG.Engine;
 using System.Collections.Generic;
 
-public static partial class LocationLoader
+namespace RPIG
 {
-	public static Dictionary<string, GameLocation> Load() 
+	public static partial class LocationLoader
 	{
-		return new Dictionary<string, GameLocation>()
+		public static Dictionary<App.LocationName, GameLocation> Load() 
 		{
+			return new Dictionary<App.LocationName, GameLocation>()
+			{
 <#
 string solutionPath = this.Host.ResolveAssemblyReference("$(ProjectDir)"); 
 
@@ -26,12 +28,13 @@ foreach (var directory in Directory.GetDirectories($@"{solutionPath}/Assets/Loca
 	var htmlText = File.ReadAllText(htmlFile.FullName);
 	var cssText = File.ReadAllText(cssFile.FullName);
 #>
-		["<#=directoryInfo.Name #>"] = new GameLocation (
-			@"<#= htmlText #>",
-			@"<#= cssText  #>"),
+			[App.LocationName.<#=directoryInfo.Name #>] = new GameLocation (
+				@"<#= htmlText #>",
+				@"<#= cssText  #>"),
 <#
 }
 #>
-		};
+			};
+		}
 	}
 }

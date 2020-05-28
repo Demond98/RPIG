@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RPIG.Engine
 {
-	public class GameLocation
+	public partial class GameLocation
 	{
 		public readonly HTMLDivElement HtmlElement;
 

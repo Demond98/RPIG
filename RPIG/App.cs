@@ -11,20 +11,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RPIG
 {
-	public static class App
+	public static partial class App
 	{
 		public const string GAME_STATE_PATH = "RPIG.App.Game.CurrentState";
 
 		public static Game Game;
 		public static HtmlWindow Window;
-		public static Dictionary<string, GameLocation> GameLocations
-			= new Dictionary<string, GameLocation>();
+		public static Dictionary<LocationName, GameLocation> GameLocations;
 
 		public static void Main()
 		{
 			GameLocations = LocationLoader.Load();
 
-			Game = new Game(GameLocations["Center"]);
+			Game = new Game(GameLocations[LocationName.Center]);
 			Window = new HtmlWindow();
 			Window.Field.DrawLocation(Game.CurrentState);
 		}
@@ -35,16 +34,17 @@ namespace RPIG
 			Window.Field.DrawLocation(Game.CurrentState);
 		}
 
-		internal static void HistoryBackward(MouseEvent<HTMLButtonElement> arg)
-		{
-			Game.HistoryBackward(arg);
-			Window.DrawLocation(Game.CurrentState);
-		}
+		public static void HistoryBackward(MouseEvent<HTMLButtonElement> _)
+			=> HistoryMove(Game.HistoryBackward);
 
-		internal static void HistoryForward(MouseEvent<HTMLButtonElement> arg)
+		public static void HistoryForward(MouseEvent<HTMLButtonElement> _)
+			=> HistoryMove(Game.HistoryForward);
+
+		public static void HistoryMove(Func<bool> historyMove)
 		{
-			Game.HistoryForward(arg);
-			Window.DrawLocation(Game.CurrentState);
+			var needDraw = historyMove();
+			if (needDraw)
+				Window.DrawLocation(Game.CurrentState);
 		}
 
 		public static T CallFunction<T>(string functionName)
