@@ -1,17 +1,13 @@
-﻿
-using RPIG.Engine;
-using RPIG.States;
+﻿using RPIG.Engine;
 using System.Collections.Generic;
 
 public static partial class LocationLoader
 {
 	public static Dictionary<string, GameLocation> Load() 
 	{
-		var locations = new Dictionary<string, GameLocation>();
-
-	locations.Add(
-		"Center",
-		new GameLocation (
+		return new Dictionary<string, GameLocation>()
+		{
+		["Center"] = new GameLocation (
 			@"Several men and women in suits gather around a large conference table in the executive meeting room. The office sits in one of the highest floors of one of the tallest buildings in the city.
 <br>
 The curtains are drawn closed, and the lights dimmed.
@@ -36,29 +32,21 @@ The old man from earlier is fumbling through the stack of files that we given to
 Older ManAh, hm... It looks like you've given me too many documents? I'm seeing at least three employee records here, which is the one we're discussing today?
 
 <button class='change-location' 
-		is-active='RPIG.GameLogic.GameLogic.AllwaysFalse'
+		is-active='RPIG.GameLogic.GameLogic.AllwaysTrue'asd
 		is-hide='RPIG.GameLogic.GameLogic.AllwaysFalse'
 		transit='RPIG.GameLogic.GameLogic.ChangeStateFirst'>
 	Kek
 </button>",
 			@"h1 {
-}")
-	);
-	locations.Add(
-		"Left",
-		new GameLocation (
+}"),
+		["Left"] = new GameLocation (
 			@"<h1>Left</h1>",
 			@"h1 {
-}")
-	);
-	locations.Add(
-		"Right",
-		new GameLocation (
+}"),
+		["Right"] = new GameLocation (
 			@"<h1>Right</h1>",
 			@"h1 {
-}")
-	);
-	return locations;
-
+}"),
+		};
 	}
 }
