@@ -1,5 +1,6 @@
 ﻿using Bridge.Html5;
 using RPIG.Engine;
+using RPIG.States;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,13 @@ namespace RPIG.View
 		public readonly HtmlMenu Menu;
 		public readonly HtmlField Field;
 
-		public HtmlWindow(Game game)
+		public HtmlWindow()
 		{
-			Menu = new HtmlMenu(game);
+			Menu = new HtmlMenu();
 			Field = new HtmlField();
-
-			Field.DrawLocation(game.CurrentState);
-			//game.LocationChanged += Field.DrawLocation;
 		}
+
+		public void DrawLocation(State state)
+			=> Field.DrawLocation(state);
 	}
 }

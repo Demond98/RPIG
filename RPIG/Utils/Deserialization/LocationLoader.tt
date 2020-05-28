@@ -13,25 +13,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Threading.Tasks" #>
 <#@ output extension=".cs" #>
-<#
-string solutionPath = ((this.Host as IServiceProvider).GetService(typeof(EnvDTE.DTE)) as EnvDTE.DTE).Solution.FullName; 
-var locationsDictionary = new Dictionary<string, GameLocationData>();
-foreach (var directory in Directory.GetDirectories($@"{solutionPath}/../RPIG/Assets/Locations/"))
-{
-	var directoryInfo = new DirectoryInfo(directory);
-	var files = directoryInfo.GetFiles();
 
-	var htmlFile = files.First(f => f.Extension == ".html");
-	var cssFile = files.First(f => f.Extension == ".css");
-
-	var htmlText = File.ReadAllText(htmlFile.FullName);
-	var cssText = File.ReadAllText(cssFile.FullName);
-
-	locationsDictionary.Add(directoryInfo.Name, new GameLocationData(htmlText, cssText));
-}
-
-
-#>
 using RPIG.Engine;
 using RPIG.States;
 using System.Collections.Generic;
@@ -42,30 +24,30 @@ public static partial class LocationLoader
 	{
 		var locations = new Dictionary<string, GameLocation>();
 
-		<# foreach(var locationData in locationsDictionary)
-		{#>
-locations.Add(
-			"<#=locationData.Key #>",
-			new GameLocation (
-				@"<#=locationData.Value.HtmlText#>",
-				@"<#=locationData.Value.CssText#>")
-			);
-		<#}#>
+<#
+string solutionPath = ((this.Host as IServiceProvider).GetService(typeof(EnvDTE.DTE)) as EnvDTE.DTE).Solution.FullName; 
 
-		return locations;
-	}
-}
-
-<#+
-public class GameLocationData
+foreach (var directory in Directory.GetDirectories($@"{solutionPath}/../RPIG/Assets/Locations/"))
 {
-	public string HtmlText { get; set; }
-	public string CssText { get; set; }
+	var directoryInfo = new DirectoryInfo(directory);
+	var files = directoryInfo.GetFiles();
 
-	public GameLocationData(string htmlText, string cssText)
-	{
-		HtmlText = htmlText;
-		CssText = cssText;
-	}
+	var htmlFile = files.First(f => f.Extension == ".html");
+	var cssFile = files.First(f => f.Extension == ".css");
+
+	var htmlText = File.ReadAllText(htmlFile.FullName);
+	var cssText = File.ReadAllText(cssFile.FullName);
+#>
+	locations.Add(
+		"<#=directoryInfo.Name #>",
+		new GameLocation (
+			@"<#= htmlText #>",
+			@"<#= cssText  #>")
+	);
+<#
 }
 #>
+	return locations;
+
+	}
+}

@@ -12,7 +12,7 @@ namespace RPIG.View
 	{
 		public readonly HTMLDivElement Element;
 
-		public HtmlMenu(Game game)
+		public HtmlMenu()
 		{
 			Element = new HTMLDivElement
 			{
@@ -77,7 +77,7 @@ namespace RPIG.View
 					Left = "65px",
 					Top = "0"
 				},
-				OnClick = game.HistoryBackward
+				OnClick = App.HistoryBackward
 			};
 
 			var buttonForward = new HTMLButtonElement
@@ -94,7 +94,7 @@ namespace RPIG.View
 					Left = "150px",
 					Top = "0",
 				},
-				OnClick = game.HistoryForward
+				OnClick = App.HistoryForward
 			};
 
 			Document.Body.AppendChild(menuStyle);

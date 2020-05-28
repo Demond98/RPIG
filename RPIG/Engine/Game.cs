@@ -12,10 +12,10 @@ namespace RPIG.Engine
 {
 	public class Game
 	{
-		public Stack<State> StatesStack;
-		public Stack<State> StatesStackInFuture;
-		public State CurrentState;
-		public State StateOnLoad;
+		private Stack<State> StatesStack;
+		private Stack<State> StatesStackInFuture;
+		private State StateOnLoad;
+		public State CurrentState { get; private set; }
 
 		public Game(GameLocation startLocation)
 		{
@@ -45,13 +45,12 @@ namespace RPIG.Engine
 			CurrentState = StateOnLoad.Copy();
 		}
 
-		
-
-		public void SaveState()
+		public void ChangeState(State newState)
 		{
+			CurrentState = newState.Copy();
 			StatesStack.Push(StateOnLoad.Copy());
 			StatesStackInFuture.Clear();
-			CurrentState = StateOnLoad.Copy();
+			StateOnLoad = CurrentState.Copy();
 		}
 	}
 }

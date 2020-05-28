@@ -9,17 +9,15 @@ namespace RPIG.GameLogic
 {
 	public static class GameLogic
 	{
-		public static State ChangeStateFirst(State state, string location)
+		public static State ChangeStateFirst(State state)
 		{
-			state.Location = App.GameLocations[location];
+			state.Location = App.GameLocations["Left"];
 			state.Player.Money++;
 
 			return state;
 		}
 
-		public static bool FOO(State state)
-		{
-			return true;
-		}
+		public static bool AllwaysTrue(State _) => true;
+		public static bool AllwaysFalse(State _) => false;
 	}
 }

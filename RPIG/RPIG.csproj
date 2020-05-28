@@ -103,4 +103,11 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Bridge.Min.17.10.1\build\Bridge.Min.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Bridge.Min.17.10.1\build\Bridge.Min.targets'))" />
   </Target>
+ <!-- This line could already present in file. If it is so just skip it  -->
+<!-- process *.tt templates on each build  -->
+<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+<PropertyGroup>
+    <TransformOnBuild>true</TransformOnBuild>
+</PropertyGroup>
+<Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v16.0\TextTemplating\Microsoft.TextTemplating.targets" />
 </Project>

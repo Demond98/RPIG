@@ -16,11 +16,8 @@ namespace RPIG.View
 		public const string PROPERTY = "property";
 		public const string CHANGE_LOCATION = "change-location";
 		public const string TRANSIT = "transit";
-		public const string NEXT_LOCATION = "next-location";
 		public const string IS_ACTIVE = "is-active";
 		public const string IS_HIDE = "is-hide";
-
-
 		public readonly HTMLDivElement Element;
 
 		public HtmlField()
@@ -43,33 +40,22 @@ namespace RPIG.View
 				}
 			};
 
-			//PushButtonHandler = pushButtonHandler;
 			Document.Body.AppendChild(Element);
-
-			var variableStyleElement = new HTMLStyleElement
-			{
-				TextContent = ".variable { color: blue; }"
-			};
-
-			Document.Body.AppendChild(variableStyleElement);
 		}
 
 		public void DrawLocation(State state)
 		{
-			Task.Run(() =>
-			{
-				Element.InnerHTML = state.Location.HtmlElement.OuterHTML;
+			Element.InnerHTML = state.Location.HtmlElement.OuterHTML;
 
-				DrawVariables();
-				DrawButtons();
-			});
+			DrawVariables();
+			DrawButtons();
 		}
 
 		private void DrawVariables()
 		{
 			foreach (var element in Element.GetElementsByClassName(VARIABLE))
 			{
-				var property = element.GetAttribute(PROPERTY);
+				var property = GetElementAttributeValue(element, PROPERTY);
 				element.TextContent = Script.Eval<object>(property).ToString();
 			}
 		}
@@ -77,25 +63,32 @@ namespace RPIG.View
 		private void DrawButtons()
 		{
 			var stateButtonElements = Element.GetElementsByClassName(CHANGE_LOCATION).Cast<HTMLButtonElement>();
-			foreach (var stateButton in stateButtonElements)
+			foreach (var button in stateButtonElements)
 			{
-				var transitFuncBody = GetStateButtonAttribute(stateButton, TRANSIT);
-				var nextStateName = GetStateButtonAttribute(stateButton, NEXT_LOCATION);
+				var state = CallAttributeFunc<State>(button, TRANSIT);
+				button.OnClick = _ => App.ChangeState(state);
 
-				stateButton.OnClick = _ => App.ChangeState(transitFuncBody, nextStateName);
-				//stateButton.Disabled = ButtonFuncPredicate(stateButton, IS_ACTIVE);
-				//stateButton.Hidden = ButtonFuncPredicate(stateButton, IS_HIDE);
+				button.Disabled = !CallAttributeFunc<bool>(button, IS_ACTIVE);
+				button.Style.Display = CallAttributeFunc<bool>(button, IS_HIDE)
+					? "none"
+					: "inline";
 			}
 		}
 
-		private bool ButtonFuncPredicate(HTMLButtonElement stateButton, string attributeName)
-			=> Script.Eval<bool>($"{GetStateButtonAttribute(stateButton, attributeName)}({App.GAME_CURRENTSTATE})");
-
-		private string GetStateButtonAttribute(HTMLButtonElement stateButton, string attributeName)
+		private TOut CallAttributeFunc<TOut>(HTMLElement element, string attribute)
 		{
-			var value = stateButton.GetAttribute(attributeName);
+			var functionName = GetElementAttributeValue(element, attribute);
+			return App.CallFunction<TOut>(functionName);
+		}
 
-			return (!string.IsNullOrEmpty(value)) ? value : throw new Exception($"{nameof(value)} is empty");
+		private string GetElementAttributeValue(HTMLElement element, string attributeName)
+		{
+			var value = element.GetAttribute(attributeName);
+
+			if (string.IsNullOrEmpty(value))
+				throw new Exception($"attribute '{attributeName}' not found");
+
+			return value;
 		}
 	}
 }
