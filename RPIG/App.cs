@@ -1,13 +1,10 @@
 ﻿using Bridge;
-using System;
 using Bridge.Html5;
-using System.Collections.Generic;
-using System.Linq;
-
 using RPIG.Engine;
-using RPIG.States;
+using RPIG.Model;
 using RPIG.View;
-using System.ComponentModel.DataAnnotations;
+using System;
+using System.Collections.Generic;
 
 namespace RPIG
 {
@@ -23,15 +20,16 @@ namespace RPIG
 		{
 			GameLocations = LocationLoader.Load();
 
-			Game = new Game(GameLocations[LocationName.Center]);
+			Game = new Game(GameLocations[LocationName.Main]);
 			Window = new HtmlWindow();
-			Window.Field.DrawLocation(Game.CurrentState);
+			Window.DrawLocation(Game.CurrentState);
 		}
 
-		public static void ChangeState(State newState)
+		public static void ChangeState(string functionName)
 		{
+			var newState = CallFunction<State>(functionName);
 			Game.ChangeState(newState);
-			Window.Field.DrawLocation(Game.CurrentState);
+			Window.DrawLocation(Game.CurrentState);
 		}
 
 		public static void HistoryBackward(MouseEvent<HTMLButtonElement> _)
@@ -48,8 +46,6 @@ namespace RPIG
 		}
 
 		public static T CallFunction<T>(string functionName)
-		{
-			return Script.Eval<T>($"{functionName}({GAME_STATE_PATH})");
-		}
+			=> Script.Eval<T>($"{functionName}({GAME_STATE_PATH})");
 	}
 }

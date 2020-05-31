@@ -4,9 +4,8 @@
 	{
 		public enum LocationName
 		{
-			Center,
-			Left,
-			Right,
+			Main,
+			Shop,
 		}
 	}
 }

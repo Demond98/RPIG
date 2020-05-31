@@ -1,12 +1,6 @@
-﻿using System;
+﻿using RPIG.Model;
+using RPIG.Model.Characters;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bridge;
-using Bridge.Html5;
-using RPIG.States;
-using RPIG.States.Characters;
 
 namespace RPIG.Engine
 {

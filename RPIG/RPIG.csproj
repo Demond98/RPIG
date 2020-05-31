@@ -38,11 +38,14 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="GameLogic\GameLogic.cs" />
-    <Compile Include="State\Characters\Player.cs" />
+    <Compile Include="GameLogic\Main.cs" />
+    <Compile Include="GameLogic\Shop.cs" />
+    <Compile Include="Model\Characters\Cow.cs" />
+    <Compile Include="Model\Characters\Player.cs" />
     <Compile Include="Engine\Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Engine\GameLocation.cs" />
-    <Compile Include="State\State.cs" />
+    <Compile Include="Model\State.cs" />
     <Compile Include="Utils\Deserialization\LocationLoader.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -76,24 +79,14 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Locations\Center\index.css">
+    <Content Include="Assets\Locations\Main\index.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Locations\Center\index.html">
+    <Content Include="Assets\Locations\Main\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Locations\Left\index.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Locations\Left\index.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Locations\Right\index.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Locations\Right\index.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\Locations\Shop\index.css" />
+    <Content Include="Assets\Locations\Shop\index.html" />
     <Content Include="Utils\Deserialization\LocationLoader.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LocationLoader.cs</LastGenOutput>

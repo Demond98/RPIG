@@ -1,11 +1,4 @@
-﻿using Bridge.Html5;
-using RPIG.Engine;
-using RPIG.States;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RPIG.Model;
 
 namespace RPIG.View
 {

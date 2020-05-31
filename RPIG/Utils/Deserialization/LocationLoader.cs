@@ -9,46 +9,65 @@ namespace RPIG
 		{
 			return new Dictionary<App.LocationName, GameLocation>()
 			{
-			[App.LocationName.Center] = new GameLocation (
-				@"Several men and women in suits gather around a large conference table in the executive meeting room. The office sits in one of the highest floors of one of the tallest buildings in the city.
-<br>
-The curtains are drawn closed, and the lights dimmed.
-<br>
-Older ManI think we have everyone we need here. Let's lock the door and begin our review.
-<br>
-The man speaking is an older gentleman. His face is aged, but hard and stern. His presence is demanding, and everyone in the room hangs on his words. He motions for another, younger man to proceed.
-<br>
-Younger ManThank you, sir. We're meeting today, this November 1st, to discuss the incident surrounding the northern branch of our company. Our records will indicate that nearly a year ago, we authorized funding towards an initiative requested by...
-<br>
-Your money is <div class='variable' style='color:#106363; display:compact' property='RPIG.App.Game.CurrentState.Player.Money'></div>
-The younger man drones on before he is interrupted by a woman sitting near him.
-<br>
-WomanExcuse me, sir, but I think we're all familiar with the incident itself. I think it would be more beneficial for us now, to know a little bit more about the individual found to be at the center of it all.
-<br>
-The younger man is clearly irritated by the interruption.
-<br>
-Younger Man...Yes, of course... Here, the document I'm handing out to you all contains all the pertinent details regarding the individual in question...
-<br>
-The old man from earlier is fumbling through the stack of files that we given to him.
-<br>
-Older ManAh, hm... It looks like you've given me too many documents? I'm seeing at least three employee records here, which is the one we're discussing today?
+			[App.LocationName.Main] = new GameLocation (
+				@"<h1>Добро пожаловать на ферму</h1>
 
-<button class='change-location' 
-		is-active='RPIG.GameLogic.GameLogic.AllwaysTrue'
-		is-hide='RPIG.GameLogic.GameLogic.AllwaysFalse'
-		transit='RPIG.GameLogic.GameLogic.ChangeStateFirst'>
-	Kek
+На данной ферме, вы можете купить коров
+
+<br>
+Ваши деньги: <div class='variable' property='RPIG.App.Game.CurrentState.Player.Money'></div> руб.
+<br>
+Количество коров: <div class='variable' property='RPIG.App.Game.CurrentState.Player.Cows.Count'></div>
+
+<button class='change-location'
+        is-active='RPIG.GameLogic.GameLogic.AllwaysTrue'
+        is-hide='RPIG.GameLogic.GameLogic.AllwaysFalse'
+        transit='RPIG.GameLogic.GameLogic.GoToShop'>
+    В магазин
+</button>
+
+<br>
+
+<button class='change-location'
+        is-active='RPIG.GameLogic.GameLogic.AllwaysTrue'
+        is-hide='RPIG.GameLogic.GameLogic.AllwaysFalse'
+        transit='RPIG.GameLogic.GameLogic.AddMoney'>
+    Поработать на заводе
 </button>",
-				@"h1 {
-}"),
-			[App.LocationName.Left] = new GameLocation (
-				@"<h1>Left</h1>",
-				@"h1 {
-}"),
-			[App.LocationName.Right] = new GameLocation (
-				@"<h1>Right</h1>",
-				@"h1 {
-}"),
+				@".variable {
+    color: #106363;
+    display: compact;
+}
+"),
+			[App.LocationName.Shop] = new GameLocation (
+				@"<h1>Магазин</h1>
+
+Вы можете купить корову
+<br>
+Стоимость:
+<div class='variable' property='RPIG.Model.Characters.Cow.Price'></div> руб.
+
+
+<button class='change-location'
+        is-active='RPIG.GameLogic.GameLogic.IsCanByCow'
+        is-hide='RPIG.GameLogic.GameLogic.AllwaysFalse'
+        transit='RPIG.GameLogic.GameLogic.AddCow'>
+    Купить корову
+</button>
+
+<br>
+
+<button class='change-location'
+        is-active='RPIG.GameLogic.GameLogic.AllwaysTrue'
+        is-hide='RPIG.GameLogic.GameLogic.AllwaysFalse'
+        transit='RPIG.GameLogic.GameLogic.GoToMain'>
+    Вернуться на ферму
+</button>",
+				@".variable {
+    color: #106363;
+    display: compact;
+}
+"),
 			};
 		}
 	}

@@ -1,23 +1,22 @@
-﻿using System;
+﻿using RPIG.Model.Characters;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RPIG.States.Characters
+namespace RPIG.Model.Characters
 {
 	public class Player
 	{
 		public int Money;
+		public List<Cow> Cows;
 
 		public Player()
 		{
-
+			Cows = new List<Cow>();
 		}
 
 		public Player(Player player)
 		{
 			Money = player.Money;
+			Cows = player.Cows;
 		}
 
 		public Player Copy()

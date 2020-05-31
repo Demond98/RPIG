@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bridge;
+﻿using Bridge;
 using Bridge.Html5;
-using RPIG.Engine;
-using RPIG.States;
+using RPIG.Model;
+using System;
+using System.Linq;
 
 namespace RPIG.View
 {
@@ -65,8 +61,8 @@ namespace RPIG.View
 			var stateButtonElements = Element.GetElementsByClassName(CHANGE_LOCATION).Cast<HTMLButtonElement>();
 			foreach (var button in stateButtonElements)
 			{
-				var state = CallAttributeFunc<State>(button, TRANSIT);
-				button.OnClick = _ => App.ChangeState(state);
+				var functionName = GetElementAttributeValue(button, TRANSIT);
+				button.OnClick = _ => App.ChangeState(functionName);
 
 				button.Disabled = !CallAttributeFunc<bool>(button, IS_ACTIVE);
 				button.Style.Display = CallAttributeFunc<bool>(button, IS_HIDE)
@@ -75,13 +71,13 @@ namespace RPIG.View
 			}
 		}
 
-		private TOut CallAttributeFunc<TOut>(HTMLElement element, string attribute)
+		public static TOut CallAttributeFunc<TOut>(HTMLElement element, string attribute)
 		{
 			var functionName = GetElementAttributeValue(element, attribute);
 			return App.CallFunction<TOut>(functionName);
 		}
 
-		private string GetElementAttributeValue(HTMLElement element, string attributeName)
+		private static string GetElementAttributeValue(HTMLElement element, string attributeName)
 		{
 			var value = element.GetAttribute(attributeName);
 

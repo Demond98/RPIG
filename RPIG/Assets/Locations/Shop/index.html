@@ -1,0 +1,23 @@
+﻿<h1>Магазин</h1>
+
+Вы можете купить корову
+<br>
+Стоимость:
+<div class='variable' property='RPIG.Model.Characters.Cow.Price'></div> руб.
+
+
+<button class='change-location'
+        is-active='RPIG.GameLogic.GameLogic.IsCanByCow'
+        is-hide='RPIG.GameLogic.GameLogic.AllwaysFalse'
+        transit='RPIG.GameLogic.GameLogic.AddCow'>
+    Купить корову
+</button>
+
+<br>
+
+<button class='change-location'
+        is-active='RPIG.GameLogic.GameLogic.AllwaysTrue'
+        is-hide='RPIG.GameLogic.GameLogic.AllwaysFalse'
+        transit='RPIG.GameLogic.GameLogic.GoToMain'>
+    Вернуться на ферму
+</button>
