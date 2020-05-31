@@ -25,9 +25,9 @@ namespace RPIG
 			Window.DrawLocation(Game.CurrentState);
 		}
 
-		public static void ChangeState(string functionName)
+		public static void ChangeState(HTMLButtonElement button)
 		{
-			var newState = CallFunction<State>(functionName);
+			var newState = HtmlAttributesLogic.CallAttributeFunc<State>(button, HtmlField.TRANSIT);
 			Game.ChangeState(newState);
 			Window.DrawLocation(Game.CurrentState);
 		}
@@ -44,8 +44,5 @@ namespace RPIG
 			if (needDraw)
 				Window.DrawLocation(Game.CurrentState);
 		}
-
-		public static T CallFunction<T>(string functionName)
-			=> Script.Eval<T>($"{functionName}({GAME_STATE_PATH})");
 	}
 }

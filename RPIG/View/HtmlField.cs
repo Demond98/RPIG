@@ -1,5 +1,6 @@
 ﻿using Bridge;
 using Bridge.Html5;
+using RPIG.Engine;
 using RPIG.Model;
 using System;
 using System.Linq;
@@ -51,7 +52,7 @@ namespace RPIG.View
 		{
 			foreach (var element in Element.GetElementsByClassName(VARIABLE))
 			{
-				var property = GetElementAttributeValue(element, PROPERTY);
+				var property = element.GetElementAttributeValue(PROPERTY);
 				element.TextContent = Script.Eval<object>(property).ToString();
 			}
 		}
@@ -61,30 +62,12 @@ namespace RPIG.View
 			var stateButtonElements = Element.GetElementsByClassName(CHANGE_LOCATION).Cast<HTMLButtonElement>();
 			foreach (var button in stateButtonElements)
 			{
-				var functionName = GetElementAttributeValue(button, TRANSIT);
-				button.OnClick = _ => App.ChangeState(functionName);
-
-				button.Disabled = !CallAttributeFunc<bool>(button, IS_ACTIVE);
-				button.Style.Display = CallAttributeFunc<bool>(button, IS_HIDE)
+				button.OnClick = _ => App.ChangeState(button);
+				button.Disabled = !button.CallAttributeFunc<bool>(IS_ACTIVE);
+				button.Style.Display = button.CallAttributeFunc<bool>(IS_HIDE)
 					? "none"
 					: "inline";
 			}
-		}
-
-		public static TOut CallAttributeFunc<TOut>(HTMLElement element, string attribute)
-		{
-			var functionName = GetElementAttributeValue(element, attribute);
-			return App.CallFunction<TOut>(functionName);
-		}
-
-		private static string GetElementAttributeValue(HTMLElement element, string attributeName)
-		{
-			var value = element.GetAttribute(attributeName);
-
-			if (string.IsNullOrEmpty(value))
-				throw new Exception($"attribute '{attributeName}' not found");
-
-			return value;
 		}
 	}
 }
