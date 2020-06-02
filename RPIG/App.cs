@@ -25,9 +25,9 @@ namespace RPIG
 			Window.DrawLocation(Game.CurrentState);
 		}
 
-		public static void ChangeState(HTMLButtonElement button)
+		public static void ExecuteChangeStateLogic(string className)
 		{
-			var newState = HtmlAttributesLogic.CallAttributeFunc<State>(button, HtmlField.TRANSIT);
+			var newState = HtmlAttributesLogic.CallFunction<State>($"{className}.Transit");
 			Game.ChangeState(newState);
 			Window.DrawLocation(Game.CurrentState);
 		}

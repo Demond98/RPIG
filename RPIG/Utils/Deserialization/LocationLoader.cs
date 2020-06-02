@@ -19,19 +19,19 @@ namespace RPIG
 <br>
 Количество коров: <div class='variable' property='RPIG.App.Game.CurrentState.Player.Cows.Count'></div>
 
-<button class='change-location'
-        is-active='RPIG.GameLogic.GameLogic.AllwaysTrue'
-        is-hide='RPIG.GameLogic.GameLogic.AllwaysFalse'
-        transit='RPIG.GameLogic.GameLogic.GoToShop'>
-    В магазин
-</button>
+<a id='go-to-shop'
+		href='#'
+		class='change-location-link'
+        function='GoToShop'>
+	В магазин
+</a>
 
 <br>
 
-<button class='change-location'
-        is-active='RPIG.GameLogic.GameLogic.AllwaysTrue'
-        is-hide='RPIG.GameLogic.GameLogic.AllwaysFalse'
-        transit='RPIG.GameLogic.GameLogic.AddMoney'>
+<button 
+		id='work-at-factory'
+		class='change-location-button'
+        function='WorkAtFactory'>
     Поработать на заводе
 </button>",
 				@".variable {
@@ -48,19 +48,19 @@ namespace RPIG
 <div class='variable' property='RPIG.Model.Characters.Cow.Price'></div> руб.
 
 
-<button class='change-location'
-        is-active='RPIG.GameLogic.GameLogic.IsCanByCow'
-        is-hide='RPIG.GameLogic.GameLogic.AllwaysFalse'
-        transit='RPIG.GameLogic.GameLogic.AddCow'>
+<button 
+		id='buy-cow'
+		class='change-location-button'
+        function='BuyCow'>
     Купить корову
 </button>
 
 <br>
 
-<button class='change-location'
-        is-active='RPIG.GameLogic.GameLogic.AllwaysTrue'
-        is-hide='RPIG.GameLogic.GameLogic.AllwaysFalse'
-        transit='RPIG.GameLogic.GameLogic.GoToMain'>
+<button 
+		id='go=to-farm'
+		class='change-location-button'
+        function='GoToFarm'>
     Вернуться на ферму
 </button>",
 				@".variable {

@@ -37,10 +37,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Assets\Locations\Main\Functions\WorkAtFactory.cs" />
+    <Compile Include="Assets\Locations\Shop\Functions\BuyCow.cs" />
+    <Compile Include="Assets\Locations\Shop\Functions\GoToFarm.cs" />
     <Compile Include="Engine\HtmlAttributesLogic.cs" />
-    <Compile Include="GameLogic\GameLogic.cs" />
-    <Compile Include="GameLogic\Main.cs" />
-    <Compile Include="GameLogic\Shop.cs" />
+    <Compile Include="Assets\Locations\Main\Functions\GoToShop.cs" />
+    <Compile Include="Logic\GameLogic.cs" />
     <Compile Include="Model\Characters\Cow.cs" />
     <Compile Include="Model\Characters\Player.cs" />
     <Compile Include="Engine\Game.cs" />

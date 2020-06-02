@@ -13,6 +13,7 @@ namespace RPIG.Engine
 		public static TOut CallAttributeFunc<TOut>(this HTMLElement element, string attribute)
 		{
 			var functionName = element.GetElementAttributeValue(attribute);
+
 			return CallFunction<TOut>(functionName);
 		}
 

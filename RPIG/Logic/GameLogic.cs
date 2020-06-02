@@ -1,6 +1,6 @@
 ﻿using RPIG.Model;
 
-namespace RPIG.GameLogic
+namespace RPIG
 {
 	public static partial class GameLogic
 	{
@@ -9,16 +9,7 @@ namespace RPIG.GameLogic
 			state.Location = App.GameLocations[locationName];
 
 			return state;
-		}
-
-		public static State AddMoney(State state)
-		{
-			state.Player.Money++;
-
-			return state;
-		}
-
-		
+		}	
 
 		public static bool AllwaysTrue(State _) => true;
 

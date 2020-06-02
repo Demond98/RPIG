@@ -11,10 +11,9 @@ namespace RPIG.View
 	{
 		public const string VARIABLE = "variable";
 		public const string PROPERTY = "property";
-		public const string CHANGE_LOCATION = "change-location";
-		public const string TRANSIT = "transit";
-		public const string IS_ACTIVE = "is-active";
-		public const string IS_HIDE = "is-hide";
+		public const string CHANGE_LOCATION_LINK = "change-location-link";
+		public const string CHANGE_LOCATION_BUTTON = "change-location-button";
+		public const string FUNCTION = "function";
 		public readonly HTMLDivElement Element;
 
 		public HtmlField()
@@ -56,18 +55,39 @@ namespace RPIG.View
 				element.TextContent = Script.Eval<object>(property).ToString();
 			}
 		}
-
+		
+		/// <summary>
+		/// TO DO: AnchorElements - Disabled
+		/// </summary>
 		private void DrawButtons()
 		{
-			var stateButtonElements = Element.GetElementsByClassName(CHANGE_LOCATION).Cast<HTMLButtonElement>();
-			foreach (var button in stateButtonElements)
-			{
-				button.OnClick = _ => App.ChangeState(button);
-				button.Disabled = !button.CallAttributeFunc<bool>(IS_ACTIVE);
-				button.Style.Display = button.CallAttributeFunc<bool>(IS_HIDE)
-					? "none"
-					: "inline";
-			}
+			var anchorElements = Element.GetElementsByClassName(CHANGE_LOCATION_LINK).Cast<HTMLAnchorElement>();
+			var buttonElements = Element.GetElementsByClassName(CHANGE_LOCATION_BUTTON).Cast<HTMLButtonElement>();
+
+			foreach (var element in anchorElements)
+				SetAttributes(element);
+
+			foreach (var element in buttonElements)
+				SetAttributes(element);
+
+			//foreach (var element in linksElements)
+			//	element.Disabled = !HtmlAttributesLogic.CallFunction<bool>($"{GetClassName(element)}.IsActive");
+
+			foreach (var element in buttonElements)
+				element.Disabled = !HtmlAttributesLogic.CallFunction<bool>($"{GetClassName(element)}.IsActive");
 		}
+
+		private void SetAttributes(HTMLElement element)
+		{
+			var className = GetClassName(element);
+
+			element.OnClick = _ => App.ExecuteChangeStateLogic(className);
+			element.Style.Display = HtmlAttributesLogic.CallFunction<bool>($"{className}.IsHide")
+				? "none"
+				: "inline";
+		}
+
+		private string GetClassName(HTMLElement element)
+			=> $"RPIG.{element.GetAttribute(FUNCTION)}";
 	}
 }

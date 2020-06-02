@@ -6,18 +6,18 @@
 <div class='variable' property='RPIG.Model.Characters.Cow.Price'></div> руб.
 
 
-<button class='change-location'
-        is-active='RPIG.GameLogic.GameLogic.IsCanByCow'
-        is-hide='RPIG.GameLogic.GameLogic.AllwaysFalse'
-        transit='RPIG.GameLogic.GameLogic.AddCow'>
+<button 
+		id='buy-cow'
+		class='change-location-button'
+        function='BuyCow'>
     Купить корову
 </button>
 
 <br>
 
-<button class='change-location'
-        is-active='RPIG.GameLogic.GameLogic.AllwaysTrue'
-        is-hide='RPIG.GameLogic.GameLogic.AllwaysFalse'
-        transit='RPIG.GameLogic.GameLogic.GoToMain'>
+<button 
+		id='go=to-farm'
+		class='change-location-button'
+        function='GoToFarm'>
     Вернуться на ферму
 </button>
