@@ -12,6 +12,7 @@ namespace RPIG.View
 		public const string VARIABLE = "variable";
 		public const string PROPERTY = "property";
 		public const string CHANGE_LOCATION = "change-location";
+		public const string CHANGEABLE_TEXT = "changeable-text";
 		public const string FUNCTION = "function";
 		public readonly HTMLDivElement Element;
 
@@ -44,6 +45,16 @@ namespace RPIG.View
 
 			DrawVariables();
 			DrawChangeLocationElements();
+			DrawTextContent();
+		}
+
+		private void DrawTextContent()
+		{
+			foreach (var element in Element.GetElementsByClassName(CHANGEABLE_TEXT))
+			{
+				string functionName = $"RPIG.{element.GetAttribute(FUNCTION)}.GetTextContent";
+				element.TextContent = HtmlAttributesLogic.CallFunction<string>(functionName);
+			}
 		}
 
 		private void DrawVariables()

@@ -43,6 +43,7 @@
     <Compile Include="Engine\HtmlAttributesLogic.cs" />
     <Compile Include="Game\Locations\Main\Functions\GoToShop.cs" />
     <Compile Include="Game\GameLogic.cs" />
+    <Compile Include="Game\Locations\Shop\TextFunctions\CanBuyCowText.cs" />
     <Compile Include="Game\Model\Characters\Cow.cs" />
     <Compile Include="Game\Model\Characters\Player.cs" />
     <Compile Include="Engine\GameEngine.cs" />
