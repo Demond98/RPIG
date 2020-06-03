@@ -17,7 +17,7 @@ namespace RPIG
 <#
 string solutionPath = this.Host.ResolveAssemblyReference("$(ProjectDir)"); 
 
-foreach (var directory in Directory.GetDirectories($@"{solutionPath}/Assets/Locations/"))
+foreach (var directory in Directory.GetDirectories($@"{solutionPath}/Game/Locations/"))
 {
 	var directoryInfo = new DirectoryInfo(directory);
 	var files = directoryInfo.GetFiles();

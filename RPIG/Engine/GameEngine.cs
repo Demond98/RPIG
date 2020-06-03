@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace RPIG.Engine
 {
-	public class Game
+	public class GameEngine
 	{
 		public State CurrentState { get; private set; }
 		private State StateOnLoad;
 		private Stack<State> StatesStack;
 		private Stack<State> StatesStackInFuture;
 
-		public Game(GameLocation startLocation)
+		public GameEngine(GameLocation startLocation)
 		{
 			StatesStack = new Stack<State>();
 			StatesStackInFuture = new Stack<State>();

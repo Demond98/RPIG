@@ -37,31 +37,31 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="Assets\Locations\Main\Functions\WorkAtFactory.cs" />
-    <Compile Include="Assets\Locations\Shop\Functions\BuyCow.cs" />
-    <Compile Include="Assets\Locations\Shop\Functions\GoToFarm.cs" />
+    <Compile Include="Game\Locations\Main\Functions\WorkAtFactory.cs" />
+    <Compile Include="Game\Locations\Shop\Functions\BuyCow.cs" />
+    <Compile Include="Game\Locations\Shop\Functions\GoToFarm.cs" />
     <Compile Include="Engine\HtmlAttributesLogic.cs" />
-    <Compile Include="Assets\Locations\Main\Functions\GoToShop.cs" />
-    <Compile Include="Logic\GameLogic.cs" />
-    <Compile Include="Model\Characters\Cow.cs" />
-    <Compile Include="Model\Characters\Player.cs" />
-    <Compile Include="Engine\Game.cs" />
+    <Compile Include="Game\Locations\Main\Functions\GoToShop.cs" />
+    <Compile Include="Game\GameLogic.cs" />
+    <Compile Include="Game\Model\Characters\Cow.cs" />
+    <Compile Include="Game\Model\Characters\Player.cs" />
+    <Compile Include="Engine\GameEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Engine\GameLocation.cs" />
-    <Compile Include="Model\State.cs" />
-    <Compile Include="Utils\Deserialization\LocationLoader.cs">
+    <Compile Include="Game\Model\State.cs" />
+    <Compile Include="Game\Templates\LocationLoader.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LocationLoader.tt</DependentUpon>
     </Compile>
-    <Compile Include="Utils\Deserialization\LocationsEnum.cs">
+    <Compile Include="Game\Templates\LocationsEnum.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LocationsEnum.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\HtmlField.cs" />
-    <Compile Include="View\HtmlMenu.cs" />
-    <Compile Include="View\HtmlWindow.cs" />
+    <Compile Include="Engine\View\HtmlField.cs" />
+    <Compile Include="Engine\View\HtmlMenu.cs" />
+    <Compile Include="Engine\View\HtmlWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bridge.json" />
@@ -82,19 +82,19 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Locations\Main\index.css">
+    <Content Include="Game\Locations\Main\index.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Locations\Main\index.html">
+    <Content Include="Game\Locations\Main\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Locations\Shop\index.css" />
-    <Content Include="Assets\Locations\Shop\index.html" />
-    <Content Include="Utils\Deserialization\LocationLoader.tt">
+    <Content Include="Game\Locations\Shop\index.css" />
+    <Content Include="Game\Locations\Shop\index.html" />
+    <Content Include="Game\Templates\LocationLoader.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LocationLoader.cs</LastGenOutput>
     </Content>
-    <Content Include="Utils\Deserialization\LocationsEnum.tt">
+    <Content Include="Game\Templates\LocationsEnum.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LocationsEnum.cs</LastGenOutput>
     </Content>

@@ -21,7 +21,7 @@ namespace RPIG
 
 <a id='go-to-shop'
 		href='#'
-		class='change-location-link'
+		class='change-location'
         function='GoToShop'>
 	В магазин
 </a>
@@ -30,7 +30,7 @@ namespace RPIG
 
 <button 
 		id='work-at-factory'
-		class='change-location-button'
+		class='change-location'
         function='WorkAtFactory'>
     Поработать на заводе
 </button>",
@@ -50,7 +50,7 @@ namespace RPIG
 
 <button 
 		id='buy-cow'
-		class='change-location-button'
+		class='change-location'
         function='BuyCow'>
     Купить корову
 </button>
@@ -59,7 +59,7 @@ namespace RPIG
 
 <button 
 		id='go=to-farm'
-		class='change-location-button'
+		class='change-location'
         function='GoToFarm'>
     Вернуться на ферму
 </button>",

@@ -12,7 +12,7 @@ namespace RPIG
 	{
 		public const string GAME_STATE_PATH = "RPIG.App.Game.CurrentState";
 
-		public static Game Game;
+		public static GameEngine Game;
 		public static HtmlWindow Window;
 		public static Dictionary<LocationName, GameLocation> GameLocations;
 
@@ -20,7 +20,7 @@ namespace RPIG
 		{
 			GameLocations = LocationLoader.Load();
 
-			Game = new Game(GameLocations[LocationName.Main]);
+			Game = new GameEngine(GameLocations[LocationName.Main]);
 			Window = new HtmlWindow();
 			Window.DrawLocation(Game.CurrentState);
 		}
