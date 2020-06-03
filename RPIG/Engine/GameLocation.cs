@@ -18,7 +18,10 @@ namespace RPIG.Engine
 				InnerHTML = htmlText
 			};
 
-			HtmlElement.SetAttribute("style", cssText);
+			HtmlElement.AppendChild(new HTMLStyleElement
+			{
+				InnerHTML = cssText
+			});
 		}
 	}
 }

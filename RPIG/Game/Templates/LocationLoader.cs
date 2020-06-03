@@ -66,8 +66,7 @@ namespace RPIG
 				@".variable {
     color: #106363;
     display: compact;
-}
-"),
+}"),
 			};
 		}
 	}
