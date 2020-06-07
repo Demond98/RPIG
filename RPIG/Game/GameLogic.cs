@@ -9,7 +9,7 @@ namespace RPIG
 			state.Location = App.GameLocations[locationName];
 
 			return state;
-		}	
+		}
 
 		public static bool AllwaysTrue(State _) => true;
 

@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Engine\View\HtmlField\OnDrawLocationFunctions.cs" />
     <Compile Include="Game\Locations\Main\Functions\WorkAtFactory.cs" />
     <Compile Include="Game\Locations\Shop\Functions\BuyCow.cs" />
     <Compile Include="Game\Locations\Shop\Functions\GoToFarm.cs" />
@@ -60,7 +61,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LocationsEnum.tt</DependentUpon>
     </Compile>
-    <Compile Include="Engine\View\HtmlField.cs" />
+    <Compile Include="Engine\View\HtmlField\HtmlField.cs" />
     <Compile Include="Engine\View\HtmlMenu.cs" />
     <Compile Include="Engine\View\HtmlWindow.cs" />
   </ItemGroup>

@@ -1,5 +1,4 @@
-﻿using Bridge;
-using Bridge.Html5;
+﻿using Bridge.Html5;
 using RPIG.Engine;
 using RPIG.Model;
 using RPIG.View;

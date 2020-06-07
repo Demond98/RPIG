@@ -48,7 +48,6 @@ namespace RPIG
 Стоимость:
 <div class='variable' property='RPIG.Model.Characters.Cow.Price'></div> руб.
 
-
 <button 
 		id='buy-cow'
 		class='change-location'
@@ -59,7 +58,7 @@ namespace RPIG
 <br>
 
 <button 
-		id='go=to-farm'
+		id='go-to-farm'
 		class='change-location'
         function='GoToFarm'>
     Вернуться на ферму

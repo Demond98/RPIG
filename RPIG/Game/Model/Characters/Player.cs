@@ -1,5 +1,4 @@
-﻿using RPIG.Model.Characters;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace RPIG.Model.Characters
 {

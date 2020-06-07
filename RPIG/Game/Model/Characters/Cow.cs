@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RPIG.Model.Characters
+﻿namespace RPIG.Model.Characters
 {
 	public class Cow
 	{
@@ -12,7 +6,6 @@ namespace RPIG.Model.Characters
 
 		public Cow()
 		{
-
 		}
 	}
 }
