@@ -20,25 +20,23 @@ namespace RPIG
 Количество коров: <div class='variable' property='RPIG.App.Game.CurrentState.Player.Cows.Count'></div>
 
 <a id='go-to-shop'
-		href='#'
-		class='change-location'
-        function='GoToShop'>
-	В магазин
+   href='#'
+   class='change-location'
+   function='GoToShop'>
+    В магазин
 </a>
 
 <br>
 
-<button 
-		id='work-at-factory'
-		class='change-location'
+<button id='work-at-factory'
+        class='change-location'
         function='WorkAtFactory'>
     Поработать на заводе
 </button>",
 				@".variable {
     color: #106363;
     display: compact;
-}
-"),
+}"),
 			[App.LocationName.Shop] = new GameLocation (
 				@"<h1>Магазин</h1>
 
@@ -48,18 +46,16 @@ namespace RPIG
 Стоимость:
 <div class='variable' property='RPIG.Model.Characters.Cow.Price'></div> руб.
 
-<button 
-		id='buy-cow'
-		class='change-location'
+<button id='buy-cow'
+        class='change-location'
         function='BuyCow'>
     Купить корову
 </button>
 
 <br>
 
-<button 
-		id='go-to-farm'
-		class='change-location'
+<button id='go-to-farm'
+        class='change-location'
         function='GoToFarm'>
     Вернуться на ферму
 </button>",
@@ -68,6 +64,15 @@ namespace RPIG
     display: compact;
 }"),
 			};
+		}
+	}
+
+	public static partial class App
+	{
+		public enum LocationName
+		{
+			Main,
+			Shop,
 		}
 	}
 }
