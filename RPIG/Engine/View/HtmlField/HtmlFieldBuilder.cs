@@ -1,9 +1,5 @@
 ﻿using Bridge.Html5;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RPIG.Engine.View.HtmlField
 {
@@ -12,6 +8,7 @@ namespace RPIG.Engine.View.HtmlField
 		public const string VARIABLE = "variable";
 		public const string CHANGE_LOCATION = "change-location";
 		public const string CHANGEABLE_TEXT = "changeable-text";
+
 		public static HTMLDivElement BuildElement()
 		{
 			var element = DefaultHtmlBuilder.BuildElement();
