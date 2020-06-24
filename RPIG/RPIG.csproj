@@ -37,7 +37,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Engine\View\DefaultHtmlBuilder.cs" />
+    <Compile Include="Engine\View\HtmlField\HtmlFieldBuilder.cs" />
     <Compile Include="Engine\View\HtmlField\OnDrawLocationFunctions.cs" />
+    <Compile Include="Engine\View\HtmlMenu\HtmlMenuBuilder.cs" />
     <Compile Include="Game\Locations\Main\Functions\WorkAtFactory.cs" />
     <Compile Include="Game\Locations\Shop\Functions\BuyCow.cs" />
     <Compile Include="Game\Locations\Shop\Functions\GoToFarm.cs" />
@@ -57,8 +60,8 @@
       <DependentUpon>LocationLoader.tt</DependentUpon>
     </Compile>
     <Compile Include="Engine\View\HtmlField\HtmlField.cs" />
-    <Compile Include="Engine\View\HtmlMenu.cs" />
-    <Compile Include="Engine\View\HtmlWindow.cs" />
+    <Compile Include="Engine\View\HtmlMenu\HtmlMenu.cs" />
+    <Compile Include="Engine\View\HtmlWindow\HtmlWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bridge.json" />

@@ -7,43 +7,16 @@ namespace RPIG.View
 {
 	public class HtmlField
 	{
-		public const string VARIABLE = "variable";
-		public const string PROPERTY = "property";
-		public const string CHANGE_LOCATION = "change-location";
-		public const string CHANGEABLE_TEXT = "changeable-text";
-		public const string FUNCTION = "function";
 		public readonly HTMLDivElement Element;
+		private readonly (string className, Action<HTMLElement> func)[] _setAttributeFuncs;
 
 		public HtmlField()
 		{
-			Element = new HTMLDivElement
-			{
-				Style =
-				{
-					Position = "fixed",
-					ZIndex = "0",
-					Top = "0",
-					Left = "18em",
-					Width = "calc(100% - 18em)",
-					Height = "100%",
-					Margin = "0",
-					Padding = "0",
-					BackgroundColor = "#222",
-					TextAlign = "center",
-					Color = "#eee"
-				}
-			};
+			Element = HtmlFieldBuilder.BuildElement();
+			_setAttributeFuncs = HtmlFieldBuilder.BuildSetAttributesFunctions();
 
 			Document.Body.AppendChild(Element);
 		}
-
-		private readonly (string className, Action<HTMLElement> func)[] _setAttributeFuncs =
-			new (string className, Action<HTMLElement> func)[]
-			{
-				(CHANGEABLE_TEXT, OnDrawLocationFunctions.DrawTextContent),
-				(VARIABLE, OnDrawLocationFunctions.DrawVariable),
-				(CHANGE_LOCATION, OnDrawLocationFunctions.DrawChangeLocationElement)
-			};
 
 		public void DrawLocation(State state)
 		{
